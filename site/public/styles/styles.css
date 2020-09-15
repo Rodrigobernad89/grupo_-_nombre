@@ -353,11 +353,12 @@
 .titulo-registro{
     text-align: center;
     font-weight: bold;
-    color: #DAF7A6;
-    padding-top: 10px;
+    color: rgba(12, 85, 40, 1);
+    padding-top: 40px;
 }
 
 .segundo-titulo{
+    padding-top:30px;
     margin-bottom: 30px;
 }
 
@@ -367,12 +368,13 @@
 
 .input-registro{
     background-color: white;
-    color: thistle;
+    color: black;
     width: 550px;
     height: 35px;
     margin-bottom: 30px;
     border-radius: 0px;
     border: 0.5px solid black;
+    text-align:center;
 }
 
 .campo-registro{
@@ -386,12 +388,43 @@
     height: 50px;
     width: 150px;
     font-family: 'Raleway', sans-serif;
-    background-color: black;
+    background-color: #3483fa;
     color:#F2F2EA;
+    margin-bottom:40px;
 }
 
- 
+.gracias{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    align-items:center;
+    height:85vh;
+}
 
+.gracias .logo-gracias{
+    font-size:90px;
+    text-transform:uppercase;
+    font-weight:bold;
+    padding-bottom:30px;
+    color:rgba(12, 85, 40, 1);
+    font-family:'Raleway', sans-serif;;
+}
+
+.gracias h2{
+    font-size:70px;
+    text-transform: uppercase;
+    font-weight:bold;
+    font-family:'Raleway', sans-serif;
+    color:black;
+}
+
+.gracias p{
+    font-size:40px;
+    padding-top: 60px;
+    color:rgba(12, 85, 40, 1);
+    /* font-weight:bold; */
+    font-family:'Raleway', sans-serif;
+}
 
 @media (min-width:768px){
     .contenedor{

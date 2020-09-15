@@ -20,3 +20,13 @@ www.amazon.com: Elegimos esta página por estructura del sitio.
 www.awwmini.com:Elegimos esta página por la estética del sitio.
 www.teaconnection.com.ar:Elegimos esta página por los servicios que ofrecemos y los clientes a los que apuntamos.
 www.tealosophy.com:Elegimos esta página por estética del sitio y servicios que ofrecemos.
+
+
+
+Paleta de colores:
+Palette URL: http://paletton.com/#uid=5000u0k00003z0000++0l3S25+Y;
+
+
+Fuentes:
+"https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+

@@ -278,7 +278,7 @@
 .titulocarrito{
     text-align:center;
     padding:25px;
-    background-color:black;
+    background: -webkit-linear-gradient(right, rgba(12, 85, 40, 1), rgba(73, 73, 73, 1));
     color:white;
 }
 
@@ -331,10 +331,63 @@
 }
 
 .carrito-boton button{
-    background-color:black;
+    background: -webkit-linear-gradient(right, rgba(12, 85, 40, 1), rgba(73, 73, 73, 1));
     border-radius:30px;
     color:white;
     padding: 0 40px;
+}
+
+.contenedor-registro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
+}
+
+.titulo-registro{
+    text-align: center;
+    font-weight: bold;
+    color: #DAF7A6;
+    padding-top: 10px;
+}
+
+.segundo-titulo{
+    margin-bottom: 30px;
+}
+
+.formulario-registro{
+    display: block;
+}
+
+.input-registro{
+    background-color: white;
+    color: thistle;
+    width: 550px;
+    height: 35px;
+    margin-bottom: 30px;
+    border-radius: 0px;
+    border: 0.5px solid black;
+}
+
+.campo-registro{
+    font-size: medium;
+}
+
+.boton-registro{
+    border-radius: 5px;
+    border-color: white;
+    border-width: 0.5px;
+    height: 50px;
+    width: 150px;
+    font-family: 'Raleway', sans-serif;
+    background-color: black;
+    color:#F2F2EA;
 }
 
  

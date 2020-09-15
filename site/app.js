@@ -5,15 +5,19 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', (req,res) => {
-    res.sendfile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/index.html');
 })
 
 app.get('/productos', (req,res) =>{
-    res.sendfile(__dirname + '/productos.html');
+    res.sendFile(__dirname + '/productos.html');
 })
 
 app.get('/carrito', (req,res)=>{
-    res.sendfile(__dirname + '/carrito.html')
+    res.sendFile(__dirname + '/carrito.html')
+})
+
+app.get('/registrarse', (req,res)=>{
+    res.sendFile(__dirname + 'public/registrarse.html')
 })
 
 

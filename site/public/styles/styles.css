@@ -390,6 +390,61 @@
     color:#F2F2EA;
 }
 
+.formulario-de-login{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px 0px;
+    height: 60vh;
+    background-color: black;
+    color: white;
+}
+
+.formulario-de-login p{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px 0px;
+    color: white;
+}
+
+.formulario-de-login .login-form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0px;
+    color: white;
+}
+
+.formulario-de-login a{
+    margin: 30px 0px;
+}
+
+.formulario-de-login .botones{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.formulario-de-login .inicio{
+    margin: 20px 10px;
+    padding: 10px;
+    background-color: #3483fa;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.formulario-de-login .crear{
+    margin: 20px 10px;
+    padding: 10px;
+ font-weight: bold;
+    text-transform: uppercase;
+}
+
  
 
 

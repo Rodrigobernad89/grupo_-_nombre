@@ -12,7 +12,7 @@
 }
 
 .header-principal{
-    background-color: rgb(41, 40, 40);
+    background-color: black;
     width:100%;
 }
 
@@ -426,6 +426,7 @@
     text-align: center;
     font-family: 'Raleway', sans-serif;
     box-sizing: border-box;
+    padding:35px;
 }
 
 .contenedor-login .formulario-login .titulo-login{
@@ -672,7 +673,8 @@
     }
 
     .pie_de_pagina{
-        margin:0%;   
+        margin:0%;
+        padding:10px;   
     }
     
     .contenedorfinal{
@@ -842,6 +844,11 @@
 
     .input-carrito-number{
         width: 70%;
+    }
+
+    .gracias{
+        padding:30px;
+        height:77vh;
     }
 
 

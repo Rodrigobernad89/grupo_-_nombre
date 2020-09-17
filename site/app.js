@@ -21,7 +21,15 @@ app.get('/registrarse', (req,res)=>{
 })
 
 app.post('/registrarse', (req,res)=> {
-    res.sendfile(__dirname + '/public/gracias.html');
+    res.sendFile(__dirname + '/public/gracias.html');
+})
+
+app.get('/login', (req,res)=>{
+    res.sendFile(__dirname + '/public/login.html')
+})
+
+app.post('/login', (req,res)=> {
+    res.sendFile(__dirname + '/public/index.html');
 })
 
 app.listen(3000, ()=> console.log('server corriendo'));

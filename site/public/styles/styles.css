@@ -12,13 +12,14 @@
 }
 
 .header-principal{
-    background-color:black;
+    background-color: rgb(41, 40, 40);
     width:100%;
 }
 
 .logo{
     display:flex;
     justify-content: space-between;
+    padding-top: 15px;
 }
 
 .toggle-nav{
@@ -157,13 +158,15 @@
     width: 100%;
     text-align: center;
     padding: 10px;
-    background: -webkit-linear-gradient(right, rgba(12, 85, 40, 1), rgba(73, 73, 73, 1));
+    background:  -webkit-linear-gradient(right, rgba(12, 85, 40, 1), rgba(73, 73, 73, 1));
     color: #fff;
+    font-family: 'Raleway', sans-serif;
 }
 
 .page-title h2 {
     font-size: 25px;
     font-weight: 700;
+    color: white;
 }
 
 .contenedor-productos{
@@ -236,7 +239,7 @@
 
  .boton-producto .boton{ 
      text-align:center;
-     background-color:#3483fa;
+     background-color:#a9e225;
      font-size:20px;
      border: solid;
      border-color: transparent;
@@ -280,6 +283,7 @@
     padding:25px;
     background: -webkit-linear-gradient(right, rgba(12, 85, 40, 1), rgba(73, 73, 73, 1));
     color:white;
+    font-family: 'Raleway', sans-serif;
 }
 
 .carrito-item{
@@ -287,6 +291,7 @@
     justify-content:flex-start;
     margin:10px;
     padding-top:30px;
+
 }
 
 .carrito-item img{
@@ -300,7 +305,19 @@
     align-items:center;
     flex-direction:column;
     padding-left:200px;
+    width: 50%;
     
+}
+
+.botones-carrito-input{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.input-carrito-number{
+    width: 30%;
 }
 
 .carrito-subtotal{
@@ -331,10 +348,10 @@
 }
 
 .carrito-boton button{
-    background: -webkit-linear-gradient(right, rgba(12, 85, 40, 1), rgba(73, 73, 73, 1));
+    background: #a9e225;
     border-radius:30px;
     color:white;
-    padding: 0 40px;
+    padding: 5px 40px;
 }
 
 .contenedor-registro{
@@ -350,102 +367,142 @@
     box-sizing: border-box;
 }
 
-.titulo-registro{
+.contenedor-registro .formulario-registro .titulo-registro{
     text-align: center;
     font-weight: bold;
     color: rgba(12, 85, 40, 1);
     padding-top: 40px;
+    font-size: 40px;
+
 }
 
-.segundo-titulo{
+.contenedor-registro .formulario-registro .segundo-titulo{
     padding-top:30px;
     margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 25px;
 }
 
-.formulario-registro{
-    display: block;
-}
 
 .input-registro{
-    background-color: white;
+    background-color: rgb(173, 173, 173);
     color: black;
-    width: 550px;
+    width: 450px;
     height: 35px;
     margin-bottom: 30px;
-    border-radius: 0px;
-    border: 0.5px solid black;
+    border-radius: 10px;
+    /*border: 0.5px solid black;*/
+    border-color: transparent;
     text-align:center;
 }
 
 .campo-registro{
     font-size: medium;
+    
 }
 
 .boton-registro{
-    border-radius: 5px;
+    border-radius: 10px;
     border-color: white;
     border-width: 0.5px;
     height: 50px;
     width: 150px;
     font-family: 'Raleway', sans-serif;
-    background-color: #3483fa;
-    color:#F2F2EA;
+    background: #a9e225;
+    color: white;
     margin-bottom:40px;
+    background-size: cover;
 }
 
-.formulario-de-login{
-    width:100%;
+.contenedor-login{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    padding: 30px 0px;
-    height: 60vh;
-    background-color: black;
-    color: white;
-}
-
-.formulario-de-login p{
-    font-size: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
+    width: 100%;
+    background-color: white;
+    color: black;
     text-align: center;
-    margin: 30px 0px;
-    color: white;
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
 }
 
-.formulario-de-login .login-form{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 20px 0px;
-    color: white;
-}
-
-.formulario-de-login a{
-    margin: 30px 0px;
-}
-
-.formulario-de-login .botones{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.formulario-de-login .inicio{
-    margin: 20px 10px;
-    padding: 10px;
-    background-color: #3483fa;
-    color: white;
+.contenedor-login .formulario-login .titulo-login{
+    text-align: center;
     font-weight: bold;
-    text-transform: uppercase;
+    color: rgba(12, 85, 40, 1);
+    padding-top: 40px;
+    font-size: 40px;
 }
 
-.formulario-de-login .crear{
-    margin: 20px 10px;
-    padding: 10px;
- font-weight: bold;
+.contenedor-login p{
+    padding-top:30px;
+    margin-bottom: 40px;
     text-transform: uppercase;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.contenedor-login .formulario-login .input-login-1{
+    background-color: rgb(173, 173, 173);
+    color: black;
+    width: 450px;
+    height: 35px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    /*border: 0.5px solid black;*/
+    text-align:center;
+    border-color: transparent;
+}
+
+.contenedor-login .formulario-login .input-login-2{
+    background-color: rgb(173, 173, 173);
+    color: black;
+    width: 450px;
+    height: 35px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    /*border: 0.5px solid black;*/
+    text-align:center;
+    border-color: transparent;
+}
+
+.contenedor-login .formulario-login .campo-login{
+    font-size: medium;
+}
+
+.contenedor-login .formulario-login .me-olvide{
+    padding-left: 280px;
+    padding-bottom: ;
+    margin-bottom: 70px;
+
+}
+
+.contenedor-login .inicio{
+    border-radius: 10px;
+    border-color: white;
+    border-width: 0.5px;
+    height: 50px;
+    width: 150px;
+    font-family: 'Raleway', sans-serif;
+    background-color: #a9e225;
+    color:#F2F2EA;
+    margin-bottom:40px;
+    margin-right: 10px;
+}
+
+.contenedor-login .crear{
+    border-radius: 10px;
+    border-color: #a9e225;
+    border-width: 0.5px;
+    height: 50px;
+    width: 150px;
+    font-family: 'Raleway', sans-serif;
+    background-color: white;
+    color:#a9e225;
+    margin-bottom:40px;
+    margin-left: 10px;
 }
 
 .gracias{
@@ -453,7 +510,6 @@
     flex-direction:column;
     justify-content:space-around;
     align-items:center;
-    height:85vh;
 }
 
 .gracias .logo-gracias{
@@ -466,7 +522,7 @@
 }
 
 .gracias h2{
-    font-size:70px;
+    font-size:40px;
     text-transform: uppercase;
     font-weight:bold;
     font-family:'Raleway', sans-serif;
@@ -474,11 +530,71 @@
 }
 
 .gracias p{
-    font-size:40px;
+    font-size:30px;
     padding-top: 60px;
     color:rgba(12, 85, 40, 1);
     /* font-weight:bold; */
     font-family:'Raleway', sans-serif;
+}
+
+.recuperar-contraseña{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
+}
+
+.recuperar-contraseña h2{
+    padding: 30px 0px;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(12, 85, 40, 1);
+    padding-top: 40px;
+    font-size: 40px;
+}
+
+.recuperar-contraseña h3{
+    padding-top:30px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.recuperar-contraseña p{
+    padding-top:5px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    color: grey;
+}
+
+.recuperar-contraseña .campo-recuperar{
+    font-size: medium;
+}
+
+.recuperar-contraseña .campo-recuperar .input-recuperar{
+    background-color: rgb(173, 173, 173);
+    color: black;
+    width: 550px;
+    height: 35px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    /*border: 0.5px solid black;*/
+    text-align:center;
+    border-color: transparent;
+}
+
+@media (mind-width:680px){
+    .input-carrito-number{
+        width: 40px;
+    }
 }
 
 @media (min-width:768px){
@@ -723,6 +839,11 @@
     .carrito-item img{
         width:30%;
     }
+
+    .input-carrito-number{
+        width: 70%;
+    }
+
 
 }
 

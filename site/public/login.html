@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <title>Proyecto Mobile First</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logomjr5.ico">
+    <title>Login | MJR</title>
 </head>
 <body>
     <div class="contenedor">
         <header class="header-principal">
             <div class="logo">
-                <p><a href="index.html">MJR</a></p>               
+                <p><a href="index.html"><img src="/img/logomjr5.png" alt="logotipo"></a></p>               
                 <a href="#" class="toggle-nav">
                     <span class="fa fa-bars"></span>
                 </a>
@@ -30,28 +31,35 @@
                     </form>
                 </div>
                 <ul class="nav-list-items">
-                    <li><a href="login.html">Iniciar sesion</a></li>
-                    <li><a href="">Registrarse</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="registrarse.html">Registrarse</a></li>
                     <li><a href="carrito.html" class="carrito-btn"><svg width="25px" height="25px" viewBox="0 0 16 16" class="bi bi-basket" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"/>
                         </svg></a></li>     
                 </ul>
             </nav>
         </header>
-       <section class = "formulario-de-login">
-           <p>Logueate para empezar a disfrutar de las mejores infusiones</p>
-           <form class = "login-form" action="/login" method="POST"></form>
-           <label for="email">Email</label>
-           <input type="text" id="email" required placeholder="mrj@example.com">
-           <label for="">Password</label>
-           <input type="password">
-           <a href="#">Olvidé mi contraseña</a>
-           <div class = "botones">
-               <button class = "inicio" type="submit">Iniciar sesion</button>
-               <button class = "crear" type="submit">Crear cuenta</button>
-           </div>
+        <section class = "contenedor-login">
+            <form action="/rlogin" method="POST" class="formulario-login">
+                <h2 class="titulo-login">The Tea Brand</h2>
+                <p>Registrate y empeza a disfrutar de nuestras infusiones   </p>
+                <div class="campo-login">
+                    <label for="email">Email</label><br>
+                    <input type="text" class="input-login-1" id="email" name="email" require placeholder="mjr@mjr.com"><br>
+                </div>
+                <div class="campo-login">
+                    <label for="password">Contraseña</label><br>
+                    <input type="password" class="input-login-2" id="password" name="password"><br>
+                </div>
+                <div class="me-olvide">
+                    <a href="restaurar-contraseña.html">Olvidé mi contraseña</a>
+                </div>
+                <button class = "inicio" type="submit">Iniciar sesion</button>
+                <button class = "crear" type="submit">Crear cuenta</button>
 
-       </section>
+            </form>
+        </section>
+
         <footer class="pie_de_pagina">
             <section class="contenedorfinal">
                 <div class="informacion">

@@ -5,6 +5,9 @@ const controller = {
     detail: (req, res) => {
         res.render('products/detalle-producto');
     },
+    cart:(req, res) => {
+        res.render('products/carrito');
+    },
 }
 
 module.exports = controller;

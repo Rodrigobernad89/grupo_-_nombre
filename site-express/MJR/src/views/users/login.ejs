@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head')  %> 
+
+<body>
+
+<%- include('../partials/header')  %> 
+
+<section class = "contenedor-login">
+    <form action="/rlogin" method="POST" class="formulario-login">
+        <h2 class="titulo-login">The Tea Brand</h2>
+        <p>Registrate y empeza a disfrutar de nuestras infusiones   </p>
+        <div class="campo-login">
+            <label for="email">Email</label><br>
+            <input type="text" class="input-login-1" id="email" name="email" require placeholder="mjr@mjr.com"><br>
+        </div>
+        <div class="campo-login">
+            <label for="password">Contraseña</label><br>
+            <input type="password" class="input-login-2" id="password" name="password"><br>
+        </div>
+        <div class="me-olvide">
+            <a href="restaurar-contraseña.html">Olvidé mi contraseña</a>
+        </div>
+        <button class = "inicio" type="submit">Iniciar sesion</button>
+        <button class = "crear" type="submit">Crear cuenta</button>
+
+    </form>
+
+
+<%- include('../partials/footer')  %> 
+
+
+<%- include('../partials/bootstrap')  %> 
+
+</body>
+
+</html>

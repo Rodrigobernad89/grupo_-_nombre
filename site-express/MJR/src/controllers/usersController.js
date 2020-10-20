@@ -1,7 +1,8 @@
 const controller = {
-    index: (req, res) => {
-        res.send('respond with a resource');
+    login:(req, res) => {
+      res.render('users/login')
       },
+      
 }
 
 module.exports = controller;

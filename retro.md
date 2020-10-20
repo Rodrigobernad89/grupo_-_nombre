@@ -7,6 +7,7 @@ MORE OF:
     Mas organizacion
 EMPEZAR A HACER:
     Medir el rendimiento
+    Planificacion
 LESS OF:
     Indecision
 DEJAR DE HACER:

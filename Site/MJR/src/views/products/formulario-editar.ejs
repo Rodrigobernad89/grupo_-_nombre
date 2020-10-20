@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head')  %> 
+
+<body>
+
+<%- include('../partials/header')  %> 
+
+<section class = "contenedor-edicion">
+    <form action="/products/:id" method="POST" class="formulario-edicion">
+        <h2 class="titulo-edicion">The Tea Brand</h2>
+        <p class="segundo-titulo-edicion">Estas editando: </p>
+        <div class="campo-edicion">
+            <label for="nombre">Nombre del producto</label><br>
+            <input type="text" class="input-edicion" id="nombre" name="nombre" placeholder="Nombre del producto"><br>
+        </div>
+        <div class="campo-edicion">
+            <label for="descripcion">Descripcion del producto</label><br>
+            <input type="text" class="input-edicion" id="descripcion" name="descripcion" placeholder="Descripcion producto"><br>
+        </div>
+        <div class="campo-edicion">
+            <label for="categoria">Categoria</label><br>
+            <input type="text" class="input-edicion" id="categoria" name="categoria" placeholder="Categoria del producto"><br>
+        </div>
+        <div class="campo-edicion">
+            <label for="sabor">Sabor</label><br>
+            <input type="text" class="input-edicion" id="sabor" name="sabor" placeholder="Sabor"><br>
+        </div>
+        <div class="campo-edicion">
+            <label for="precio">Precio del producto</label><br>
+            <input type="text" class="input-edicion" id="precio" name="precio" placeholder="precio"><br>
+        </div>
+        <div>
+            <label for="imagen">Subi tu imagen</label>
+            <input type="file" name="imagen" id= "imagen"/>
+        </div>
+        <button type="submit" class="boton-edicion2">Editar Producto</button>
+    </form>
+</section>
+
+
+<%- include('../partials/footer')  %> 
+
+
+<%- include('../partials/bootstrap')  %> 
+
+</body>
+
+</html>

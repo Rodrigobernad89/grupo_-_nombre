@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head')  %> 
+
+<body>
+
+<%- include('../partials/header')  %> 
+
+<div class="page-title">
+    <h2>Nuestras Infusiones</h2>
+</div>
+<section class="contenedor-productos">
+    <% if(products.length > 0 ) {%>
+    <% products.map(product =>{ %>
+        <article>
+            
+            <div class="foto-producto">
+                <img class='grow' src="/images/<%=product.imagen%>">
+            </div>
+                <a href="/products/detalle" class="overlay"> 
+                <h2><%=product.nombre_producto%></h2>
+            </a>
+        </article>
+        <%}) }else{%>
+            <article>
+                <p>Ningun resultado encontrado</p>
+            </article>
+            <%} %>
+    </section>
+
+<%- include('../partials/bootstrap')  %> 
+
+</body>
+
+</html>

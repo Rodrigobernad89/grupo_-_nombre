@@ -9,26 +9,26 @@
 
 <section class="descripcion-producto">
     <div class="imagen-producto">
-        <img src="/images/TeRojo1.jpg">
+        <img src=<%= "/images/" + productoEncontrado.imagen %>>
     </div>
     <div class="propiedades-producto">
         <div class="titulo-producto">
-            <h2>Te Rojo</h2>
+            <h2><%= productoEncontrado.nombre_producto %> </h2>
         </div>
         <div>
-            <p class="descripcion">Tiempo 4 mins. Hervir a 85 grados. Ideal para la tarde</p>
+            <p class="descripcion"><%= productoEncontrado.indicaciones %> ></p>
         </div>
         <div>
             <form class="seleccione-ingredientes" action="/producto" method="Get">
                 <select name="" id="" placeholder="Seleccione">
-                    <option value="">Con Papaya $50</option>
-                    <option value="">Con Jengibre $50</option>
-                    <option value="">Con Chocolate $50</option>
+                    <option value="">Con Papaya $60</option>
+                    <option value="">Con Jengibre $60</option>
+                    <option value="">Con Chocolate $60</option>
                 </select>
             </form>    
         </div>
         <div>
-            <h2 class="precio">Total: $200</h2>
+            <h2 class="precio">Total: <%= productoEncontrado.precio %> </h2>
         </div>
         <div class="boton-producto">
             <button class="boton" type="submit">
@@ -42,11 +42,11 @@
         </div>
         <div class = "botones-edicion-delete">
             <button class = "boton-edicion" type="submit">
-                <a href="/products/editar">
+                <a href="/products/<%= productoEncontrado.id %>/edit/">
                     Editar producto
                 </a>
             </button>
-            <form action="#" method="POST" style="display: inline-flex">
+            <form action="/products/<%= productoEncontrado.id %>?_method=DELETE"method="POST" style="display: inline-flex">
                 <button class = "boton-edicion" type="submit">ELIMINAR</button>
             </form>
         </div>              

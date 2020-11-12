@@ -8,28 +8,31 @@
 <%- include('../partials/header')  %> 
 
 <section class = "contenedor-crear">
-    <form action="/products/store" method="POST" class="formulario-crear">
+    <form action="/products" method="POST" class="formulario-crear" enctype="multipart/form-data">
+        <div style = "width: 500px;">
+            <% if (typeof errors != "undefined") { %>
+                <% errors.forEach(error => { %>
+                    <p><%= error.msg %> </p>
+                <% }) %>			
+            <% } %>
+        </div>
         <h2 class="titulo-crear">The Tea Brand</h2>
         <p class="segundo-titulo-crear">Formulario de creacion de producto</p>
         <div class="campo-crear">
-            <label for="nombre">Nombre del producto</label><br>
-            <input type="text" class="input-crear" id="nombre" name="nombre" placeholder="Nombre del producto"><br>
+            <label for="nombre_producto">Nombre del producto</label><br>
+            <input type="text" class="input-crear" id="nombre_producto" name="nombre_producto" placeholder="Nombre del producto"><br>
         </div>
         <div class="campo-crear">
             <label for="descripcion">Descripcion del producto</label><br>
-            <input type="text" class="input-crear" id="descripcion" name="descripcion" placeholder="Descripcion producto"><br>
+            <textarea name="descripcion" id="descripcion" class="input-edicion" placeholder="Descripcion del producto"></textarea><br>
         </div>
         <div class="campo-crear">
-            <label for="categoria">Categoria</label><br>
-            <input type="text" class="input-crear" id="categoria" name="categoria" placeholder="Categoria del producto"><br>
-        </div>
-        <div class="campo-crear">
-            <label for="sabor">Sabor</label><br>
-            <input type="text" class="input-crear" id="sabor" name="sabor" placeholder="Sabor"><br>
+            <label for="indicaciones">Indicaciones</label><br>
+            <input type="text" class="input-crear" id="indicaciones" name="indicaciones" placeholder="Indicaciones"><br>
         </div>
         <div class="campo-crear">
             <label for="precio">Precio del producto</label><br>
-            <input type="text" class="input-crear" id="precio" name="precio" placeholder="precio"><br>
+            <input type="text" class="input-crear" id="precio" name="precio" placeholder="Precio"><br>
         </div>
         <div>
             <label for="imagen">Subi tu imagen</label>

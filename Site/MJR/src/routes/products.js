@@ -35,9 +35,9 @@ router.get('/', productController.index);
 router.get('/crear', productController.create);
 router.get('/carrito', productController.cart);
 router.get('/:id', productController.detail);
-router.post('/',upload.single('imagen'), validator.product,productController.store);
+router.post('/',upload.single('image'), validator.product,productController.store);
 router.get('/:id/edit', productController.edit);
-router.put('/:id',upload.single('imagen'),validator.product,productController.update)
+router.put('/:id',upload.single('image'),validator.product,productController.update)
 router.delete('/:id',productController.destroy)
 module.exports = router;
 

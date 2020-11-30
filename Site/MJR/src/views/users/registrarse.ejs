@@ -7,7 +7,7 @@
 
 <%- include('../partials/header')  %> 
 <section class = "contenedor-registro">
-    <form action="/registrarse" method="POST" class="formulario-registro">
+    <form action="/users/register" method="POST" class="formulario-registro">
         <h2 class="titulo-registro">The Tea Brand</h2>
         <p class="segundo-titulo">Registrate y empeza a disfrutar de nuestras infusiones   </p>
         <div class="campo-registro">
@@ -27,8 +27,8 @@
             <input type="password" class="input-registro" id="password" name="password"><br>
         </div>
         <div class="campo-registro">
-            <label for="password">Confirmar Contraseña</label><br>
-            <input type="password" class="input-registro" id="password" name="password"><br>
+            <label for="confirmar-password">Confirmar Contraseña</label><br>
+            <input type="password" class="input-registro" id="password" name="confirmar-password"><br>
         </div>
         <button type="submit" class="boton-registro">Crear Cuenta</button>
     </form>

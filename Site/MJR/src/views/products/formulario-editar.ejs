@@ -8,28 +8,28 @@
 <%- include('../partials/header')  %> 
 
 <section class = "contenedor-edicion">
-    <form action="/products/<%= productoAEditar.id %>?_method=PUT"" method="POST" class="formulario-edicion" enctype="multipart/form-data">
+    <form action="/products/<%= toEdit.id %>?_method=PUT"" method="POST" class="formulario-edicion" enctype="multipart/form-data">
         <h2 class="titulo-edicion">The Tea Brand</h2>
-        <p class="segundo-titulo-edicion">Estas editando: <%= productoAEditar.nombre_producto %></p>
+        <p class="segundo-titulo-edicion">Estas editando: <%= toEdit.name %></p>
         <div class="campo-edicion">
-            <label for="nombre_producto">Nombre del producto</label><br>
-            <input type="text" class="input-edicion" id="nombre_producto" name="nombre_producto" value=<%= productoAEditar.nombre_producto %> ><br>
+            <label for="name">Nombre del producto</label><br>
+            <input type="text" class="input-edicion" id="nombre_producto" name="name" value=<%= toEdit.name %> ><br>
         </div>
         <div class="campo-edicion">
-            <label for="descripcion">Descripcion del producto</label><br>
-            <textarea name="description" id="descripcion" class="input-edicion" value = <%= productoAEditar.descripcion %>>></textarea><br>
+            <label for="description">Descripcion del producto</label><br>
+            <textarea name="description" id="descripcion" class="input-edicion" value = <%= toEdit.description %>></textarea><br>
         </div>
         <div class="campo-edicion">
-            <label for="indicaciones">Indicaciones</label><br>
-            <input type="text" class="input-edicion" id="indicaciones" name="indicaciones" value = <%= productoAEditar.indicaciones %>><br>
+            <label for="instructions">Indicaciones</label><br>
+            <input type="text" class="input-edicion" id="indicaciones" name="instructions" value = <%= toEdit.instructions %>><br>
         </div>
         <div class="campo-edicion">
-            <label for="precio">Precio del producto</label><br>
-            <input type="text" class="input-edicion" id="precio" name="precio" value = <%= productoAEditar.precio %>><br>
+            <label for="price">Precio del producto</label><br>
+            <input type="text" class="input-edicion" id="precio" name="price" value = <%= toEdit.price %>><br>
         </div>
         <div>
-            <label for="imagen">Subi tu imagen</label>
-            <input type="file" name="imagen" id= "imagen"/>
+            <label for="image">Subi tu imagen</label>
+            <input type="file" name="image" id= "imagen"/>
         </div>
         <button type="submit" class="boton-edicion2">Editar Producto</button>
     </form>

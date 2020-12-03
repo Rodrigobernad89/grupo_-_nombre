@@ -236,15 +236,17 @@ ALTER TABLE `proyecto_integrador_db`.`cart`
 CHANGE COLUMN `creation` `created_at` TIMESTAMP NULL DEFAULT NULL ,
 CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 
-ALTER TABLE `proyecto_integrador_db`.`extras` 
+ALTER TABLE `proyecto_integrador_db`.`extras`
 CHANGE COLUMN `creation` `created_at` TIMESTAMP NULL DEFAULT NULL ,
 CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 
-ALTER TABLE `proyecto_integrador_db`.`orders` 
+ALTER TABLE `proyecto_integrador_db`.`orders`
 CHANGE COLUMN `creation` `created_at` TIMESTAMP NULL DEFAULT NULL ,
 CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 
-ALTER TABLE 'proyecto_integrador_db`.`payments` 
+
+
+ALTER TABLE `proyecto_integrador_db`.`payments`
 CHANGE COLUMN `creation` `created_at` TIMESTAMP NULL DEFAULT NULL ,
 CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 
@@ -259,19 +261,19 @@ CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 ALTER TABLE `proyecto_integrador_db`.`orders` 
 DROP FOREIGN KEY `fk_orders_payments`,
 DROP FOREIGN KEY `fk_orders_shipping`;
-ALTER TABLE `proyecto_integrador`.`orders` 
+ALTER TABLE `proyecto_integrador_db`.`orders` 
 ADD COLUMN `quantity` INT NOT NULL AFTER `payment_id`,
 CHANGE COLUMN `shipping_id` `shipping_id` INT(11) NULL ,
 CHANGE COLUMN `payment_id` `payment_id` INT(11) NULL ;
-ALTER TABLE `proyecto_integrador`.`orders` 
+ALTER TABLE `proyecto_integrador_db`.`orders` 
 ADD CONSTRAINT `fk_orders_payments`
   FOREIGN KEY (`payment_id`)
-  REFERENCES `proyecto_integrador`.`payments` (`id`)
+  REFERENCES `proyecto_integrador_db`.`payments` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_orders_shipping`
   FOREIGN KEY (`shipping_id`)
-  REFERENCES `proyecto_integrador`.`shipping` (`id`)
+  REFERENCES `proyecto_integrador_db`.`shipping` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
@@ -361,8 +363,7 @@ ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `stock`;
 ALTER TABLE `proyecto_integrador_db`.`profiles` 
 ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `description`;
 
-ALTER TABLE `proyecto_integrador_db`.`roles` 
-ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `description`;
+
 
 ALTER TABLE `proyecto_integrador_db`.`roles_profiles` 
 ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `profile_id`;
@@ -372,12 +373,6 @@ ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `shipping_status_id`;
 
 ALTER TABLE `proyecto_integrador_db`.`shipping_status` 
 ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `description`;
-
-ALTER TABLE `proyecto_integrador_db`.`users` 
-ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `password`;
-
-ALTER TABLE `proyecto_integrador_db`.`users_roles` 
-ADD COLUMN `delted_at` TIMESTAMP NULL DEFAULT NULL AFTER `role_id`;
 
 UPDATE `proyecto_integrador_db`.`products` SET `description` = 'El té blanco es antioxidante, mejora tu sistema inmunitario y frena el envejecimiento celular. En cuanto a su poder vitamínico, el té blanco tiene un gran aporte de vitamina C, que también refuerza el sistema inmunitario y te protege de resfriados y procesos víricos. Otro nutriente que forma parte de la composición del té blanco es la vitamina E, que está ligada a la mejora de los trastornos oculares, las funciones mentales y la salud cardiovascular.', `instructions` = 'Tiempo de infusión de 5 minutos, calentar el agua preferentemente a 75 grados. Ideal para la tarde.' WHERE (`id` = '6');
 UPDATE `proyecto_integrador_db`.`products` SET `description` = 'Una de las propiedades más destacadas del té negro es que contribuye a disminuir el nivel de colesterol en sangre. También, ayuda a controlar la presión sanguínea y es ideal para consumirse antes de las comidas, ya que prepara el aparato digestivo para trabajar correctamente.', `instructions` = 'Tiempo de infusión de 4 minutos. Calentar el agua preferentemente a 95 grados. Ideal para la mañana.' WHERE (`id` = '1');

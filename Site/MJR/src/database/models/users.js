@@ -7,5 +7,11 @@ module.exports = (sequelize, DataTypes) => {
         email: DataTypes.STRING,
         password:DataTypes.STRING
     } )
+    user.associate = models=>{
+        user.belongsToMany(models.Role,{
+          through:'users_roles',
+          as:'roles'
+        })
+    }
     return user;
 }

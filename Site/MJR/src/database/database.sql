@@ -259,19 +259,19 @@ CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 ALTER TABLE `proyecto_integrador_db`.`orders` 
 DROP FOREIGN KEY `fk_orders_payments`,
 DROP FOREIGN KEY `fk_orders_shipping`;
-ALTER TABLE `proyecto_integrador`.`orders` 
+ALTER TABLE `proyecto_integrador_db`.`orders` 
 ADD COLUMN `quantity` INT NOT NULL AFTER `payment_id`,
 CHANGE COLUMN `shipping_id` `shipping_id` INT(11) NULL ,
 CHANGE COLUMN `payment_id` `payment_id` INT(11) NULL ;
-ALTER TABLE `proyecto_integrador`.`orders` 
+ALTER TABLE `proyecto_integrador_db`.`orders` 
 ADD CONSTRAINT `fk_orders_payments`
   FOREIGN KEY (`payment_id`)
-  REFERENCES `proyecto_integrador`.`payments` (`id`)
+  REFERENCES `proyecto_integrador_db`.`payments` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_orders_shipping`
   FOREIGN KEY (`shipping_id`)
-  REFERENCES `proyecto_integrador`.`shipping` (`id`)
+  REFERENCES `proyecto_integrador_db`.`shipping` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 

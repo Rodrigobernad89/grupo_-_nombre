@@ -16,12 +16,12 @@
             <h2><%= productDetail.name %> </h2>
         </div>
         <div>
-            <p class="descripcion"><%= productDetail.indicaciones %> ></p>
+            <p class="descripcion"><%= productDetail.instructions %></p>
         </div>
         <div>
             <form class="seleccione-ingredientes" action="/producto" method="Get">
-                <select name="" id="" placeholder="Seleccione">
-                    <option value="" disabled selected>Seleccione gusto adicional</option>
+                <select name="" id="" placeholder="Seleccione" multiple>
+                    <option value="" disabled selected>Seleccione gustos adicionales</option>
                     <option value="">Con papaya: $50 </option>
                     <option value="">Con jengibre: $50 </option>
                     <option value="">Con canela: $50 </option>
@@ -29,7 +29,7 @@
             </form>    
         </div>
         <div>
-            <h2 class="precio">Total: <%= productDetail.precio %> </h2>
+            <h2 class="precio">Total: $ <%= productDetail.price %> </h2>
         </div>
         <div class="boton-producto">
             <button class="boton" type="submit">

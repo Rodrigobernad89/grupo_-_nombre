@@ -244,7 +244,7 @@ ALTER TABLE `proyecto_integrador_db`.`orders`
 CHANGE COLUMN `creation` `created_at` TIMESTAMP NULL DEFAULT NULL ,
 CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 
-ALTER TABLE 'proyecto_integrador_db`.`payments` 
+ALTER TABLE 'proyecto_integrador_db'.`payments` 
 CHANGE COLUMN `creation` `created_at` TIMESTAMP NULL DEFAULT NULL ,
 CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 

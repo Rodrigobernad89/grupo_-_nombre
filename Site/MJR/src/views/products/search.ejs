@@ -11,15 +11,15 @@
     <h2>Nuestras Infusiones</h2>
 </div>
 <section class="contenedor-productos">
-    <% if(products.length > 0 ) {%>
-    <% products.map(product =>{ %>
+    <% if(searchResults.length > 0 ) {%>
+    <% searchResults.map(result =>{ %>
         <article>
             
             <div class="foto-producto">
-                <img class='grow' src="/images/<%=product.imagen%>">
+                <img class='grow' src="/images/<%=result.image%>">
             </div>
-                <a href="/products/<%= product.id %> " class="overlay"> 
-                <h2><%=product.nombre_producto%></h2>
+                <a href="/products/<%= result.id %> " class="overlay"> 
+                <h2><%=result.name%></h2>
             </a>
         </article>
         <%}) }else{%>

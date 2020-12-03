@@ -10,17 +10,18 @@ const controller = {
     index: (req, res) => {
         res.render('index');
       },
-      search: (req, res) => {
-        const search =req.body.busqueda;
-        var ExpReg = new RegExp(search,'i');
-       
-       const products=productos.filter(p=>{
-         console.log(p.nombre_producto)
-         return  ExpReg.test(p.nombre_producto) == true
-       })
-      
-      res.render('products/search',{products})
-      }
+      search: async(req,res) => {
+        try{
+            let searchResults = await Product.findAll({
+                where:{
+                    name:{[Op.like]: ('%' +req.body.busqueda +'%')}
+                }
+            })
+            res.render('products/search',{searchResults});
+        } catch(error) {
+            console.log(error);
+        }
+    },
       
 }
 

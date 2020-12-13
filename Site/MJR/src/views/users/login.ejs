@@ -8,7 +8,7 @@
 <%- include('../partials/header')  %> 
 
 <section class = "contenedor-login">
-    <form action="/rlogin" method="POST" class="formulario-login">
+    <form action="/users/login" method="POST" class="formulario-login">
         <h2 class="titulo-login">The Tea Brand</h2>
         <p>Registrate y empeza a disfrutar de nuestras infusiones   </p>
         <div class="campo-login">
@@ -21,6 +21,10 @@
         </div>
         <div class="me-olvide">
             <a href="/users/restaurar">Olvidé mi contraseña</a>
+        </div>
+        <div class="campo-login">
+            <label for="rememberme">Recordarme</label>
+            <input type="checkbox" class="input-login-3" id="rememberme" name="rememberme"><br>
         </div>
         <button class = "inicio" type="submit">Iniciar sesion</button>
         <button class = "crear" type="submit">Crear cuenta</button>

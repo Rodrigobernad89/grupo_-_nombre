@@ -620,6 +620,14 @@
     border-color: transparent;
 }
 
+.contenedor-login .formulario-login .input-login-3{
+    font-size:;
+    margin-bottom: 70px;
+    width: 30px;
+    height:15px;
+    text-align: center;
+}
+
 .contenedor-login .formulario-login .campo-login{
     font-size: medium;
 }
@@ -627,7 +635,7 @@
 .contenedor-login .formulario-login .me-olvide{
     padding-left: 280px;
     padding-bottom: ;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
 
 }
 
@@ -655,6 +663,17 @@
     color:#a9e225;
     margin-bottom:40px;
     margin-left: 10px;
+}
+
+.boton-logout{
+    background-color: black;
+    color:white;
+    /* font-family: 'Raleway', sans-serif; */
+    font-size: 13px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight:bold;
+    letter-spacing: 1px;
 }
 
 .gracias{

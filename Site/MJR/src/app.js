@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const log = require("./Middlewares/aplicacion/log")
+const session = require('express-session');
+const middSession = require('./Middlewares/aplicacion/session');
 let methodOverride = require('method-override');
 
 
@@ -17,7 +20,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-
+app.use(session({
+  secret: 'pagina MJR',
+  resave: true,
+  saveUninitialized: true,
+  // cookie: { secure: true }
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,6 +34,8 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 //Mis Middlewares
+app.use(log);
+app.use(middSession);
 
 
 //usamos routers importados arriba

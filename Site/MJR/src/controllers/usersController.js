@@ -1,5 +1,7 @@
 const db= require('../database/models');
-const{User,Role} = require('../database/models')
+const{User,Role} = require('../database/models');
+const bcrypt = require("bcryptjs");
+
 // const { validationResult } = require('express-validator');
 const {Op} = require('sequelize');
 
@@ -7,29 +9,45 @@ const {Op} = require('sequelize');
 
 
 const controller = {
-    login:(req, res) => {
+    showLogin:(req, res) => {
       res.render('users/login')
       },
-      register: async (req, res) => {
-          try {
-          const roles=await Role.findAll();
-             res.render('users/registrarse',{roles})
-            } catch (error) {
-    console.log(error)
+    processLogin: async (req,res) =>{
+      try{
+        const userFound = await User.findOne({where: {email: req.body.email}})
+        await userFound
+        req.session.user = userFound.email;
+        if(req.body.rememberme){
+          res.cookie("recordame", userFound.email, {maxAge: 1000 * 60})
+        }
+        res.redirect('/products');
+        res.json(userFound);
+      } catch(error) {
+        console.log(error)
       }
+    },
+    register: async (req, res) => {
+      try {
+        const roles=await Role.findAll();
+          res.render('users/registrarse',{roles})
+        } catch (error) {
+          console.log(error)
+        }
         
-        },
-      store: async (req, res) => {
-        try{ 
-          const newUser=await User.create(req.body)
-				await newUser.addRoles(req.body.roles)
-		
-          res.redirect('/users');
-        }catch (error) {
-          console.log(error);
+    },
+    store: async (req, res) => {
+      let passwordHash = bcrypt.hashSync(req.body.password, 10);
+      try{          
+        const newUser=await User.create(req.body)
+        await newUser.addRoles(req.body.roles)
+        // console.log(passwordHash);
+        // res.json(req.body);		
+        res.redirect('/login');
+      }catch (error) {
+        console.log(error);
       }
-       
-      },
+      
+    },
       search: async (req, res) => {
         let userResults = req.body.results;
         try {
@@ -101,7 +119,12 @@ const controller = {
 			console.log(error)
 		}
 	
-	}
+  },
+  logout: (req,res) => {
+    req.session.destroy();
+    res.clearCookie("recordame");
+    res.redirect("/");
+  }
 
     
 }

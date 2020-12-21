@@ -41,6 +41,7 @@
                 </a>
             </button>
         </div>
+        <%if(rolsession.id==1){%>
         <div class = "botones-edicion-delete">
             <button class = "boton-edicion" type="submit">
                 <a href="/products/<%= productDetail.id %>/edit/">
@@ -50,7 +51,8 @@
             <form action="/products/<%= productDetail.id %>?_method=DELETE"method="POST" style="display: inline-flex">
                 <button class = "boton-edicion" type="submit">ELIMINAR</button>
             </form>
-        </div>              
+        </div>   
+        <%}%>           
     </div>
 </section>
 

@@ -14,14 +14,21 @@ const controller = {
       },
     processLogin: async (req,res) =>{
       try{
-        const userFound = await User.findOne({where: {email: req.body.email}})
+        const userFound = await User.findOne({
+          include:['roles'],
+          where: {email: req.body.email}})
         await userFound
-        req.session.user = userFound.email;
+        req.session.user = userFound;
+        const rol = await Role.findOne({
+          include:['profiles'],
+          where: {id: userFound.roles[0].id}})
+        req.session.rolsession = rol;
         if(req.body.rememberme){
           res.cookie("recordame", userFound.email, {maxAge: 1000 * 60})
         }
-        res.redirect('/products');
-        res.json(userFound);
+      
+        res.redirect('/');
+        
       } catch(error) {
         console.log(error)
       }
@@ -95,15 +102,16 @@ const controller = {
         res.render('users/restaurarContraseña')
       },
       index: async (req,res)=>{
+        
         try {
           const users=await User.findAll({
             include:['roles']
             })
-          
             res.render('users/index',{users})
         } catch (error) {
           console.log(error)
         }
+    
        
       },
 

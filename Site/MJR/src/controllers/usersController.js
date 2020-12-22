@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 // const { validationResult } = require('express-validator');
 const {Op} = require('sequelize');
 
+const { validationResult } = require('express-validator');
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 
@@ -55,6 +57,7 @@ const controller = {
       }
       
     },
+    
       search: async (req, res) => {
         let userResults = req.body.results;
         try {

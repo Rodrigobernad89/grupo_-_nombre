@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 // const { validationResult } = require('express-validator');
 const {Op} = require('sequelize');
 
+const { validationResult } = require('express-validator');
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 
@@ -44,8 +46,12 @@ const controller = {
     },
     store: async (req, res) => {
       let passwordHash = bcrypt.hashSync(req.body.password, 10);
-      try{          
-        const newUser=await User.create(req.body)
+      try{   
+        let nuevo_usuario = {
+          ...req.body,
+          image:req.file.filename
+        }       
+        const newUser=await User.create(nuevo_usuario)
         await newUser.addRoles(req.body.roles)
         // console.log(passwordHash);
         // res.json(req.body);		

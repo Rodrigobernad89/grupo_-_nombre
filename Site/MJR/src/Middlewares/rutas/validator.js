@@ -35,4 +35,25 @@ module.exports = {
             .withMessage("El archivo no es valido")
 
         ],
+        user: [  
+            body("imagen")
+                .custom(function(value, {req}){
+                if(req.file){
+                    return true;
+                }
+                return req.file;
+                })
+                .withMessage("imagen obligatoria")
+                .bail()
+                .custom(function(value,{req}) {
+    
+                const acceptedExtensions = ['.jpg', '.jpeg', '.png'];
+    
+                const ext = path.extname(req.file.originalname)
+    
+                return acceptedExtensions.includes(ext);      
+                })
+                .withMessage("El archivo no es valido")
+    
+            ],
 }

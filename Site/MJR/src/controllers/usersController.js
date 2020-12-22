@@ -46,10 +46,10 @@ const controller = {
       let passwordHash = bcrypt.hashSync(req.body.password, 10);
       try{          
         const newUser=await User.create(req.body)
-        await newUser.addRoles(req.body.roles)
+        await newUser.addRoles(6)
         // console.log(passwordHash);
         // res.json(req.body);		
-        res.redirect('/login');
+        res.redirect('/');
       }catch (error) {
         console.log(error);
       }

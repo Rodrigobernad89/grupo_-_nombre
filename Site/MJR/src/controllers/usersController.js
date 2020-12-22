@@ -46,8 +46,12 @@ const controller = {
     },
     store: async (req, res) => {
       let passwordHash = bcrypt.hashSync(req.body.password, 10);
-      try{          
-        const newUser=await User.create(req.body)
+      try{
+        let nuevo_usuario = {
+          ...req.body,
+          image:req.file.filename
+        }       
+        const newUser=await User.create(nuevo_usuario)	        
         await newUser.addRoles(6)
         // console.log(passwordHash);
         // res.json(req.body);		
@@ -57,7 +61,7 @@ const controller = {
       }
       
     },
-    
+
       search: async (req, res) => {
         let userResults = req.body.results;
         try {

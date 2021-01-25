@@ -16,6 +16,8 @@ var rolesRouter = require('./routes/roles');
 var profilesRouter = require('./routes/profiles');
 var app = express();
 
+var apiRouter = require('./routes/api/productsApi');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -46,6 +48,8 @@ app.use('/products', productsRouter);
 app.use('/users', usersRouter);
 app.use('/roles', rolesRouter);
 app.use('/profiles', profilesRouter);
+
+app.use('/api/products', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

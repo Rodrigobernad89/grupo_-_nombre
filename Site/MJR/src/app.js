@@ -17,6 +17,9 @@ var profilesRouter = require('./routes/profiles');
 var cartRouter = require('./routes/cart');
 var app = express();
 
+var apiRouter = require('./routes/api/productsApi');
+var apiUsersRouter = require('./routes/api/users');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -49,6 +52,10 @@ app.use('/roles', rolesRouter);
 app.use('/profiles', profilesRouter);
 app.use('/cart', cartRouter);
 
+
+app.use('/api/products', apiRouter);
+
+app.use('/api/users', apiUsersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

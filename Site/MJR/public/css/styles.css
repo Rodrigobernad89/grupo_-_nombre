@@ -10,7 +10,10 @@
     background-color:white;
     width:100%
 }
-
+.centrado{
+    margin-left: auto;
+    margin-right: auto;
+}
 .header-principal{
     background-color: black;
     width:100%;
@@ -55,10 +58,6 @@
     font-family: 'Raleway', sans-serif;
 }
 
-.formulario-busqueda{
-    display:none;
-
-}
 
 .primera {
     background: url('/images/Terojo1.jpg'), -webkit-linear-gradient(rgba(12, 85, 40, 0.6), rgba(73, 73, 73, 0.4));

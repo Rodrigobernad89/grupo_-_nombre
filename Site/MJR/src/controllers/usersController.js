@@ -21,18 +21,24 @@ const controller = {
             where: {email: req.body.email}})
           await userFound
           if(userFound!=undefined || userFound!=null){
-          req.session.user = userFound;
-          const rol = await Role.findOne({
-            include:['profiles'],
-            where: {id: userFound.roles[0].id}})
-          req.session.rolsession = rol;
-          if(req.body.rememberme){
-            res.cookie("recordame", userFound.email, {maxAge: 1000 * 60})
+            
+            req.session.user = userFound;
+            
+            const rol = await Role.findOne({
+              include:['profiles'],
+              where: {id: userFound.roles[0].id}})
+            
+            req.session.rolsession = rol;
+            
+            if(req.body.rememberme){
+              res.cookie("recordame", userFound.email, {maxAge: 1000 * 60})
+            }
+              // res.send(userFound);
+              res.redirect('/');
+
+          }else{
+            res.send({mensaje:'error'});
           }
-        res.send(userFound);
-       }else{
-        res.send({mensaje:'error'});
-       }
         } catch(error) {
           console.log(error)
         }

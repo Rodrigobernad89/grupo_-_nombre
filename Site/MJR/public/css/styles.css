@@ -58,36 +58,11 @@
     font-family: 'Raleway', sans-serif;
 }
 
-
-.primera {
-    background: url('/images/Terojo1.jpg'), -webkit-linear-gradient(rgba(12, 85, 40, 0.6), rgba(73, 73, 73, 0.4));
-}
-
-.segunda{
-    background: url('/images/TeVerde3.png'), -webkit-linear-gradient(rgba(12, 85, 40, 0.6), rgba(73, 73, 73, 0.4));
-}
-
-.tercera{
-    background: url('/images/Manzanilla3.jpg'), -webkit-linear-gradient(rgba(12, 85, 40, 0.6), rgba(73, 73, 73, 0.4));
-}
-
-.cuarta {
-    background: url('/images/TeBlanco1.jpg'), -webkit-linear-gradient(rgba(12, 85, 40, 0.6), rgba(73, 73, 73, 0.4));
-}
-
-.quinta {
-    background: url('/images/oolong.jpg'), -webkit-linear-gradient(rgba(12, 85, 40, 0.6), rgba(73, 73, 73, 0.4));
-}
-
-.sexta {
-    background: url('/images/EarlGrey1.png'), -webkit-linear-gradient(rgba(12, 85, 40, 0.6), rgba(73, 73, 73, 0.4));
-}
-
 .carousel-item {
     position: relative;
-    background-repeat: no-repeat; 
-    background-position: center center; 
-    background-size: cover; 
+    background-repeat: no-repeat!important; 
+    background-position: center center!important; 
+    background-size: cover!important; 
     height: 85vh; 
     width: 100vw;
 }

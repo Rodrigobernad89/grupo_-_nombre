@@ -7,7 +7,18 @@ const {Op} = require('sequelize');
 // const productsFilePath = path.join(__dirname, '../database/db_products.json');
 // const productos = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 const controller = {
-    index: (req, res) => {
+    index: async(req, res) => {
+        try {
+            const productos = await Product.findAll({
+                where:{
+                    deleted_at:null,
+                }
+            }
+            );
+            res.render('index', {productos})
+        } catch (error) {
+            console.log(error);
+        }
         res.render('index');
       },
       search: async(req,res) => {

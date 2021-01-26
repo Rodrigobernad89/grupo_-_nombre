@@ -3,6 +3,10 @@
 /*  usario :    rodrigoBernad@mjr.com
     contraseña: 789  */
 
+CREATE DATABASE proyecto_integrador_db;
+
+USE proyecto_integrador_db;
+
 CREATE TABLE `proyecto_integrador_db`.`products` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
@@ -13,7 +17,7 @@ CREATE TABLE `proyecto_integrador_db`.`products` (
   `stock` INT NOT NULL,
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
-  `deleted_at` TIMESTAMP NULL DEFAULT NULL
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`));
 
 
@@ -64,13 +68,15 @@ CREATE TABLE `proyecto_integrador_db`.`order_status` (
   `description` TEXT NOT NULL,
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
-  `deleted_at` TIMESTAMP NULL DEFAULT NULL
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`));
 CREATE TABLE `proyecto_integrador_db`.`carts` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NULL,
+  `total` INT NOT NULL DEFAULT 0,
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  `purchased_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_cart_users_idx` (`user_id` ASC) ,
@@ -130,7 +136,7 @@ CREATE TABLE `proyecto_integrador_db`.`items` (
   `qty` INT NOT NULL DEFAULT 1,
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
-  `deleted_at` TIMESTAMP NULL DEFAULT NULL
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_items_cart_idx` (`cart_id` ASC) ,
   INDEX `fk_products_items_idx` (`product_id` ASC) ,
@@ -157,9 +163,7 @@ CREATE TABLE `proyecto_integrador_db`.`orders` (
   `order_status_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `cart_id` INT NOT NULL,
-  `shipping_id` INT NULL,
-  `payment_id` INT NULL,
-  `quantity` INT NOT NULL
+  `quantity` INT NOT NULL,
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL,
@@ -175,16 +179,6 @@ CREATE TABLE `proyecto_integrador_db`.`orders` (
   CONSTRAINT `fk_orders_cart`
     FOREIGN KEY (`cart_id`)
     REFERENCES `proyecto_integrador_db`.`carts` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_orders_shipping`
-    FOREIGN KEY (`shipping_id`)
-    REFERENCES `proyecto_integrador_db`.`shipping` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_orders_payments`
-    FOREIGN KEY (`payment_id`)
-    REFERENCES `proyecto_integrador_db`.`payments` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_order_status`
@@ -222,9 +216,9 @@ INSERT INTO users_roles (id, user_id, role_id) values (2,2,2);
 INSERT INTO users_roles (id, user_id, role_id) values (3,3,1);
 INSERT INTO users_roles (id, user_id, role_id) values (4,4,2);
 
-INSERT INTO extras (id, name, price, active) values (1,papaya,50,1);
-INSERT INTO extras (id, name, price, active) values (2,jengibre,50,1);
-INSERT INTO extras (id, name, price, active) values (3,canela,50,1);
+INSERT INTO extras (id, name, price, active) values (1,'papaya',50,1);
+INSERT INTO extras (id, name, price, active) values (2,'jengibre',50,1);
+INSERT INTO extras (id, name, price, active) values (3,'canela',50,1);
 
 UPDATE `proyecto_integrador_db`.`products` SET `description` = 'El té blanco es antioxidante, mejora tu sistema inmunitario y frena el envejecimiento celular. En cuanto a su poder vitamínico, el té blanco tiene un gran aporte de vitamina C, que también refuerza el sistema inmunitario y te protege de resfriados y procesos víricos. Otro nutriente que forma parte de la composición del té blanco es la vitamina E, que está ligada a la mejora de los trastornos oculares, las funciones mentales y la salud cardiovascular.', `instructions` = 'Tiempo de infusión de 5 minutos, calentar el agua preferentemente a 75 grados. Ideal para la tarde.' WHERE (`id` = '6');
 UPDATE `proyecto_integrador_db`.`products` SET `description` = 'Una de las propiedades más destacadas del té negro es que contribuye a disminuir el nivel de colesterol en sangre. También, ayuda a controlar la presión sanguínea y es ideal para consumirse antes de las comidas, ya que prepara el aparato digestivo para trabajar correctamente.', `instructions` = 'Tiempo de infusión de 4 minutos. Calentar el agua preferentemente a 95 grados. Ideal para la mañana.' WHERE (`id` = '1');
@@ -245,6 +239,3 @@ INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) 
 INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) VALUES ('1', '4');
 INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) VALUES ('2', '1');
 INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) VALUES ('2', '3');
-
-
-

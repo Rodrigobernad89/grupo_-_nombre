@@ -12,8 +12,13 @@ let methodOverride = require('method-override');
 var mainRouter = require('./routes/main');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
-
+var rolesRouter = require('./routes/roles');
+var profilesRouter = require('./routes/profiles');
+var cartRouter = require('./routes/cart');
 var app = express();
+
+var apiRouter = require('./routes/api/productsApi');
+var apiUsersRouter = require('./routes/api/users');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,6 +48,14 @@ app.use(methodOverride('_method'));
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
 app.use('/users', usersRouter);
+app.use('/roles', rolesRouter);
+app.use('/profiles', profilesRouter);
+app.use('/cart', cartRouter);
+
+
+app.use('/api/products', apiRouter);
+
+app.use('/api/users', apiUsersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

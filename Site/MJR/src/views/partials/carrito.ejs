@@ -1,0 +1,138 @@
+<section class="contenedor-carrito">
+    <div class='carritodecompras'>
+    </div>       
+</section>
+
+<script>
+    // oculto carrito
+    $('.contenedor-carrito').hide();
+    // detecto evento de click y creo event handler para obtener items del carrito asincronamente por ajax
+    $(document).on('click', '.carrito-btn', function(e){
+        // freno todas las funcionalidades normales de un elemento <a></a>
+        e.preventDefault();
+        console.log('hizo click en carrito')
+        // verifico si el carrito esta oculto
+        if($('.contenedor-carrito').css('display') === 'none'){
+            let total = 0;
+            $.ajax({
+                type: 'GET',
+                url: '/cart',
+                contentType: 'application/json',
+                success: function(items){
+                    // creo un array vacio que contendra cada item del carrito a insertar
+                    let itemsString = [];
+                    // recibo items del carrito y lo recorro en un for each, si item esta vacio el foreach no va a tener ningun elemento por recorrer por ende el carrito va a quedar vacio
+                    items.forEach( item => {
+                        // creo variable total arriba, y luego una variable itemPrecio donde sumo el precio del producto y el precio del agregado.Luego lo agrego al total para sumar el precio total de manera dinamica en tiempo real.
+                        let extraPrice = item.extra !== null ? parseInt(item.extra.price) : 0;
+                        let itemPrecio = parseInt(item.product.price) + extraPrice;
+                        total += itemPrecio;
+                        // creo item y lo agrego al array
+                        itemsString.push(`
+                            <article class="carrito-item">
+                                <img src="/images/${item.product.image}" alt="${item.product.name}">
+                                <div class="descripcion-carrito">
+                                    <h4>${item.product.name}</h4>
+                                    ${item.extra !== null ? '<span>Extra: ' + item.extra.name + '</span>': ''}
+                                </div>
+                                <div class="descripcion-carrito">
+                                    <span>Cant.</span>
+                                    <div class="botones-carrito-input">
+                                        <input type="number" class="input-carrito-number" name="cantidad" id="cantidad" value="${item.qty}">
+                                    </div>
+                                </div>
+                                <h3 class="precio-item-carrito" data-precio="${itemPrecio}">$${itemPrecio}</h3>
+                                <form action="/cart/${item.id}?_method=DELETE" method="POST" class="remove-from-cart-form">
+                                    <button title="Sacar del Carrito" class="remove-from-cart-btn" type='submit'><i class="fas fa-times"></i></a>
+                                </form>
+                            </article>`);
+                    });
+                    $('.carritodecompras').append(`
+                        <div class="carrito-productos">
+                            <div class="titulocarrito">
+                                <h2>Carrito de compras</h2>
+                                <a href="#" class="close-cart-btn" title="cerrar"><i class="fas fa-times"></i></a>
+                            </div>
+                            ${itemsString.join()}
+                        </div>
+                        <div class="carrito-total" data-total="${items.length ? total : 0 }">
+                                <h2>Total: ${items.length ? '$' + total : '$0' }</h2>
+                        </div>
+                        <div class="carrito-boton">
+                                <button type="submit">Comprar</button>
+                        </div>
+                    `);
+                     // una vez creado el carrito lo muestro
+                    $('.contenedor-carrito').fadeIn(300);
+                },
+                fail: function(error){
+                    throw new Error('Ocurrió un error al intentar obtener el carrito', error)
+                }
+            });
+        } else {
+            $('.contenedor-carrito').fadeOut(300);
+        }
+    });
+    // detecto evento de click en la cruz del carrito para que se oculte y se borre su contenido
+    $(document).on('click', '.close-cart-btn', function(e){
+        e.preventDefault();
+        $('.contenedor-carrito').hide();
+        $('.carritodecompras').empty();
+    });
+    // detecto el submit del formulario disparado por el click en la x del item del carrito para eliminarlo
+    $(document).on('submit', '.remove-from-cart-form', function(e){
+        e.preventDefault();
+        let $this = $(this);
+        $.ajax({
+            type: 'POST',
+            url: $this.attr('action'),
+            data: 'json',
+            success: function(data){
+                console.log('respuesta del server', data);
+                if(data.response === 200){
+                    let carritoItem = $this.parents('.carrito-item');
+                    carritoItem.hide(200).remove();
+                    let newTotal = parseInt($('.carritodecompras .carrito-total').data('total')) - parseInt(carritoItem.find('.precio-item-carrito').data('precio'));
+                    $('.carritodecompras .carrito-total h2').text(`Total: $${newTotal}`);
+                    $('.carritodecompras .carrito-total').data('total',newTotal);
+                    
+                }
+            },
+            fail: function(error) {
+                throw new Error('Ocurrió un error al intentar eliminar el item', error);
+            }
+        })
+    })
+
+    // $(document).on('click', '.add-product-to-cart-btn', function(e){
+    //     e.preventDefault();
+    //     let $this = $(this),
+    //         mainContainer = $this.parents('.propiedades-producto'),
+    //         prodId = mainContainer.data('prodid'),
+    //         extrasId = mainContainer.find('.seleccione-ingredientes option:selected').val(),
+    //         total = parseInt(mainContainer.find('.precio').data('total'));
+    //         formData = new FormData();
+    //         formData.append('product_id', prodId);
+    //         formData.append('extras_id', extrasId);
+    //         formData.append('total', total);
+    //         formData.append('qty', 1);
+
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: '/cart',
+    //             data: formData,
+    //             // dataType: 'application/json',
+    //             processData: false,
+    //             success: function(data){
+    //                 console.log('respuesta del server', data);
+    //                 if(data.response === 200){
+    //                     $('.contenedor-carrito').fadeIn(300);
+    //                 }
+    //             },
+    //             fail: function(error){
+    //                 throw new Error('Ocurrió un error al intentar agregar el item al carrito', error);
+    //             }
+    //         })
+    //     ;
+    // })
+</script>

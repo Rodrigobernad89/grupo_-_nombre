@@ -33,7 +33,7 @@ const productController = require('../controllers/productsController');
 
 router.get('/', productController.index); 
 router.get('/crear', productController.create);
-router.get('/carrito', productController.cart);
+// router.get('/carrito', productController.cart);
 router.get('/:id', productController.detail);
 router.post('/',upload.single('image'), validator.product,productController.store);
 router.get('/:id/edit', productController.edit);

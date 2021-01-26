@@ -1,35 +1,41 @@
+/*==================N   o   t   a   ====================*/
+/*Nombre de usuario y contraseña de prueba */
+/*  usario :    rodrigoBernad@mjr.com
+    contraseña: 789  */
+
 CREATE TABLE `proyecto_integrador_db`.`products` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `created_at` TIMESTAMP NULL DEFAULT NULL,
-  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `name` VARCHAR(100) NOT NULL,
   `description` TEXT NOT NULL,
   `instructions` TEXT NOT NULL,
   `price` DECIMAL NOT NULL,
   `image` VARCHAR(255) NOT NULL,
   `stock` INT NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL
   PRIMARY KEY (`id`));
 
 
 CREATE TABLE `proyecto_integrador_db`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `created_at` TIMESTAMP NULL DEFAULT NULL,
-  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `first_name` VARCHAR(100) NOT NULL,
   `last_name` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
+  `image` VARCHAR(100) NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE `proyecto_integrador_db`.`extras` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `created_at` TIMESTAMP NULL DEFAULT NULL,
-  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `name` VARCHAR(100) NOT NULL,
   `price` DECIMAL NOT NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`));
 
@@ -46,6 +52,9 @@ CREATE TABLE `proyecto_integrador_db`.`profiles` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `description` TEXT NOT NULL,
+  `link` VARCHAR(45) NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`));
 
@@ -53,14 +62,15 @@ CREATE TABLE `proyecto_integrador_db`.`order_status` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `description` TEXT NOT NULL,
-  `deleted_at` TIMESTAMP NULL DEFAULT NULL
-  PRIMARY KEY (`id`));
-
-CREATE TABLE `proyecto_integrador_db`.`cart` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL
+  PRIMARY KEY (`id`));
+CREATE TABLE `proyecto_integrador_db`.`carts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_cart_users_idx` (`user_id` ASC) ,
@@ -74,6 +84,8 @@ CREATE TABLE `proyecto_integrador_db`.`roles_profiles` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `role_id` INT NOT NULL,
     `profile_id` INT NOT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
     `deleted_at` TIMESTAMP NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_roles_profiles_idx` (`role_id` ASC) ,
@@ -115,6 +127,9 @@ CREATE TABLE `proyecto_integrador_db`.`items` (
   `cart_id` INT NOT NULL,
   `product_id` INT NOT NULL,
   `extras_id` INT NULL,
+  `qty` INT NOT NULL DEFAULT 1,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL
   PRIMARY KEY (`id`),
   INDEX `fk_items_cart_idx` (`cart_id` ASC) ,
@@ -122,7 +137,7 @@ CREATE TABLE `proyecto_integrador_db`.`items` (
   INDEX `fk_items_extras_idx` (`extras_id` ASC) ,
   CONSTRAINT `fk_items_cart`
     FOREIGN KEY (`cart_id`)
-    REFERENCES `proyecto_integrador_db`.`cart` (`id`)
+    REFERENCES `proyecto_integrador_db`.`carts` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_items_products`
@@ -138,8 +153,6 @@ CREATE TABLE `proyecto_integrador_db`.`items` (
 
 CREATE TABLE `proyecto_integrador_db`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `created_at` TIMESTAMP NULL DEFAULT NULL,
-  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `total` DECIMAL NOT NULL,
   `order_status_id` INT NOT NULL,
   `user_id` INT NOT NULL,
@@ -147,6 +160,8 @@ CREATE TABLE `proyecto_integrador_db`.`orders` (
   `shipping_id` INT NULL,
   `payment_id` INT NULL,
   `quantity` INT NOT NULL
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_orders_users_idx` (`user_id` ASC) ,
@@ -159,7 +174,7 @@ CREATE TABLE `proyecto_integrador_db`.`orders` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_cart`
     FOREIGN KEY (`cart_id`)
-    REFERENCES `proyecto_integrador_db`.`cart` (`id`)
+    REFERENCES `proyecto_integrador_db`.`carts` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_shipping`
@@ -200,22 +215,6 @@ INSERT INTO users (id, first_name, last_name, email, password) values (1, 'Maria
 INSERT INTO users (id, first_name, last_name, email, password) values (2, 'Juan', 'Pablo', 'juanPablo@mjr.com', '456');
 INSERT INTO users (id, first_name, last_name, email, password) values (3, 'Rodrigo', 'Bernad', 'rodrigoBernad@mjr.com', '789');
 INSERT INTO users (id, first_name, last_name, email, password) values (4, 'saida', 'Subelza', 'dthurner3@paginegialle.it', '******');
-INSERT INTO users (id, first_name, last_name, email, password) values (5, 'Sid', 'Woolis', 'swoolis4@nasa.gov', 'uu3WGJ');
-INSERT INTO users (id, first_name, last_name, email, password) values (6, 'Jena', 'Layfield', 'jlayfield5@phpbb.com', 'FqkVuUdlrXI');
-INSERT INTO users (id, first_name, last_name, email, password) values (7, 'Stafford', 'O''Dare', 'sodare6@usnews.com', '85qWjj');
-INSERT INTO users (id, first_name, last_name, email, password) values (8, 'Justis', 'Culver', 'jculver7@meetup.com', 'tlLWm9VK');
-INSERT INTO users (id, first_name, last_name, email, password) values (9, 'Ward', 'Smalls', 'wsmalls8@dell.com', 'vHbfpF6bAOw');
-INSERT INTO users (id, first_name, last_name, email, password) values (10, 'Dulcinea', 'Loveridge', 'dloveridge9@slashdot.org', 'HlaGrkDiroUp');
-INSERT INTO users (id, first_name, last_name, email, password) values (11, 'Briano', 'Howcroft', 'bhowcrofta@usda.gov', 'B15Q8KI6xJ');
-INSERT INTO users (id, first_name, last_name, email, password) values (12, 'Wilburt', 'Cloy', 'wcloyb@foxnews.com', 'peD972');
-INSERT INTO users (id, first_name, last_name, email, password) values (13, 'Manny', 'Raspison', 'mraspisonc@nbcnews.com', 'X8z0Ay');
-INSERT INTO users (id, first_name, last_name, email, password) values (14, 'Padget', 'Ausiello', 'pausiellod@ucoz.ru', '0dK4E2Qyu3Ht');
-INSERT INTO users (id, first_name, last_name, email, password) values (15, 'Jeni', 'Whicher', 'jwhichere@technorati.com', 'qGBjCsrV');
-INSERT INTO users (id, first_name, last_name, email, password) values (16, 'Carly', 'Blade', 'cbladef@flickr.com', 'YQ8yBy5X');
-INSERT INTO users (id, first_name, last_name, email, password) values (17, 'Lannie', 'Spoors', 'lspoorsg@photobucket.com', 'uJomrYzO2QYE');
-INSERT INTO users (id, first_name, last_name, email, password) values (18, 'Melisent', 'Sloy', 'msloyh@slashdot.org', 'SNTt2ZmViD9');
-INSERT INTO users (id, first_name, last_name, email, password) values (19, 'Rose', 'Lefever', 'rlefeveri@state.gov', 'DEw8nLaiWj');
-INSERT INTO users (id, first_name, last_name, email, password) values (20, 'Clarke', 'Eddisford', 'ceddisfordj@msu.edu', '2er9S7YRfoV');
 
 /*poblacion de la tabla users_roles*/
 INSERT INTO users_roles (id, user_id, role_id) values (1,1,1);
@@ -233,3 +232,19 @@ UPDATE `proyecto_integrador_db`.`products` SET `description` = 'El té rojo, tam
 UPDATE `proyecto_integrador_db`.`products` SET `description` = 'El té verde posee un mayor poder antioxidantes, por eso ayuda a prevenir el envejecimiento. Es rico en polifenoles que tienen efectos como la reducción de la inflamación y protegen contra las enfermedades cardiovasculares y sus factores de riesgo, incluida la hipertensión arterial. Incrementa la formación de hueso. Además, con una alta concentración de vitamina C, el té verde fortalece al sistema inmunológico contra resfríos, gripes y otras infecciones.', `instructions` = 'Tiempo de infusión de 2 minutos, calentar el agua preferentemente a 85 grados. Ideal para el dia y la noche' WHERE (`id` = '3');
 UPDATE `proyecto_integrador_db`.`products` SET `description` = 'El té azul ayuda a fortalecer el sistema inmunológico. contribuye a reducir el colesterol, la presión arterial y el nivel de azúcar en la sangre. Por si fuera poco, se sabe que protege al hígado, mejora las defensas y contribuye a quemar grasas. También se lo utiliza para luchar contra el estrés, y su poder para fortalecer los huesos o limitar los efectos de la diabetes.', `instructions` = 'Tiempo de infusión de 7 minutos, calentar el agua preferentemente a 90 grados. Ideal para la mañana o la tarde' WHERE (`id` = '4');
 UPDATE `proyecto_integrador_db`.`products` SET `description` = 'Las principales propiedades de esta hierba son antiinflamatorias, antialérgicas, antibacterianas y sedantes. Además, posee buenas ventajas digestivas y es muy buena para tratar afecciones respiratorias como ser el asma, el resfrío y la fiebre. También, a aquellas personas que no pueden dormir se les aconseja que beban una infusión de manzanilla para conseguir sueños más profundos.', `instructions` = 'Tiempo de infusión de 2 minutos, calentar el agua preferentemente a 85 grados. Ideal para antes de irse a dormir' WHERE (`id` = '5');
+
+
+INSERT INTO `proyecto_integrador_db`.`profiles` (`name`, `description`, `link`) VALUES ('usuarios', 'administracion del modulo usuarios', 'users');
+INSERT INTO `proyecto_integrador_db`.`profiles` (`name`, `description`, `link`) VALUES ('roles', 'administracion del modulo roles', 'roles');
+INSERT INTO `proyecto_integrador_db`.`profiles` (`name`, `description`, `link`) VALUES ('productos', 'administracion modulo productos', 'products');
+INSERT INTO `proyecto_integrador_db`.`profiles` (`name`, `description`, `link`) VALUES ('nuevo producto', 'crear nuevo producto', 'products/crear');
+
+INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) VALUES ('1', '1');
+INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) VALUES ('1', '2');
+INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) VALUES ('1', '3');
+INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) VALUES ('1', '4');
+INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) VALUES ('2', '1');
+INSERT INTO `proyecto_integrador_db`.`roles_profiles` (`role_id`, `profile_id`) VALUES ('2', '3');
+
+
+

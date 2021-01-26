@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 // const { validationResult } = require('express-validator');
 const {Op} = require('sequelize');
 
+const { validationResult } = require('express-validator');
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 
@@ -12,20 +14,29 @@ const controller = {
     showLogin:(req, res) => {
       res.render('users/login')
       },
-    processLogin: async (req,res) =>{
-      try{
-        const userFound = await User.findOne({where: {email: req.body.email}})
-        await userFound
-        req.session.user = userFound.email;
-        if(req.body.rememberme){
-          res.cookie("recordame", userFound.email, {maxAge: 1000 * 60})
+      processLogin: async (req,res) =>{
+        try{
+          const userFound = await User.findOne({
+            include:['roles'],
+            where: {email: req.body.email}})
+          await userFound
+          if(userFound!=undefined || userFound!=null){
+          req.session.user = userFound;
+          const rol = await Role.findOne({
+            include:['profiles'],
+            where: {id: userFound.roles[0].id}})
+          req.session.rolsession = rol;
+          if(req.body.rememberme){
+            res.cookie("recordame", userFound.email, {maxAge: 1000 * 60})
+          }
+        res.send(userFound);
+       }else{
+        res.send({mensaje:'error'});
+       }
+        } catch(error) {
+          console.log(error)
         }
-        res.redirect('/products');
-        res.json(userFound);
-      } catch(error) {
-        console.log(error)
-      }
-    },
+      },
     register: async (req, res) => {
       try {
         const roles=await Role.findAll();
@@ -37,17 +48,22 @@ const controller = {
     },
     store: async (req, res) => {
       let passwordHash = bcrypt.hashSync(req.body.password, 10);
-      try{          
-        const newUser=await User.create(req.body)
-        await newUser.addRoles(req.body.roles)
+      try{
+        let nuevo_usuario = {
+          ...req.body,
+          image:req.file.filename
+        }       
+        const newUser=await User.create(nuevo_usuario)	        
+        await newUser.addRoles(6)
         // console.log(passwordHash);
         // res.json(req.body);		
-        res.redirect('/login');
+        res.redirect('/users/login');
       }catch (error) {
         console.log(error);
       }
       
     },
+
       search: async (req, res) => {
         let userResults = req.body.results;
         try {
@@ -95,15 +111,16 @@ const controller = {
         res.render('users/restaurarContraseña')
       },
       index: async (req,res)=>{
+        
         try {
           const users=await User.findAll({
             include:['roles']
             })
-          
             res.render('users/index',{users})
         } catch (error) {
           console.log(error)
         }
+    
        
       },
 

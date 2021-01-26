@@ -13,36 +13,25 @@
             <div class="titulocarrito">
                 <h2>Carrito de compras</h2>
             </div>
-            <article class="carrito-item">
-                <img src="img/TeRojo1.jpg" alt="">
-                <div class="descripcion-carrito">
-                    <h2>Te Rojo</h2>
-                    <!-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque mollitia repudiandae aliquam doloremque</p> -->
-                    <h2>$200</h2>
-                    <div class="botones-carrito-input">
-                        <input type="number" class="input-carrito-number" name="cantidad" id="cantidad" value="1">
+            <%items.forEach( item => {%>
+                <article class="carrito-item">
+                    <img src="/images/<%= item.product.image %>" alt="<%= item.product.name %>">
+                    <div class="descripcion-carrito">
+                        <h2><%= item.product.name %></h2>
+                        <!-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque mollitia repudiandae aliquam doloremque</p> -->
+                        <h2>$<%= item.product.price %></h2>
+                        <div class="botones-carrito-input">
+                            <input type="number" class="input-carrito-number" name="cantidad" id="cantidad" value="<%= item.qty %>">
+                        </div>
                     </div>
-                </div>
-            </article>
-            <article class="carrito-item">
-                <img src="img/TeVerde3.png" alt="">
-                <div class="descripcion-carrito">
-                    <h2>Te Verde</h2>
-                    <!-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque mollitia repudiandae aliquam doloremque</p> -->
-                    <h2>$200</h2>
-            
-                    <div class="botones-carrito-input">
-                        <input type="number" class="input-carrito-number" name="cantidad" id="cantidad" value="1">
-                    </div>
-
-                </div>
-            </article>
-            <div class="carrito-subtotal">
+                </article>
+            <% }) %>
+            <!-- <div class="carrito-subtotal">
                 <h2>Subtotal :</h2>
-            </div>       
+            </div>        -->
         </div>
         <div class="carrito-total">
-                <h2>Total:</h2>
+                <h2>Total: <%= items.length ? `$${items[0].cart.total}` : 0 %></h2>
         </div>
         <div class="carrito-boton">
                 <button type="submit">Comprar</button>

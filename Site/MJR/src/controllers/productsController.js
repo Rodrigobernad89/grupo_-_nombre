@@ -1,7 +1,7 @@
 // const fs = require('fs');
 const path = require('path');
 const db= require('../database/models');
-const{Product} = require('../database/models')
+const{Product, Extra} = require('../database/models')
 // const { validationResult } = require('express-validator');
 const {Op} = require('sequelize');
 
@@ -29,12 +29,12 @@ const controller = {
 			try {
 				let id = req.params.id;
 				const productDetail = await Product.findByPk(id);
-				// const extras = await Extra.findAll({
-				// 	where: {
-				// 		active:1
-				// 	}
-				// })
-				res.render('products/detalle-producto', {productDetail,id})
+				const extras = await Extra.findAll({
+					where:  {
+						active: 1
+					}
+				});
+				res.render('products/detalle-producto', {productDetail,extras,id})
 			} catch (error) {
 				console.log(error);
 			}

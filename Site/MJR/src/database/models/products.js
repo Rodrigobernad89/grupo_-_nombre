@@ -9,5 +9,14 @@ module.exports = (sequelize, DataTypes) => {
          image:DataTypes.STRING,
          stock:DataTypes.INTEGER
      } )
+     product.associate = models=>{
+        product.hasMany(models.Item, {
+            as: "items",
+            foreignKey: "product_id",
+        });
+     }
+
      return product;
+
+
  }

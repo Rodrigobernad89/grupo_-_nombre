@@ -10,7 +10,10 @@
     background-color:white;
     width:100%
 }
-
+.centrado{
+    margin-left: auto;
+    margin-right: auto;
+}
 .header-principal{
     background-color: black;
     width:100%;
@@ -55,10 +58,6 @@
     font-family: 'Raleway', sans-serif;
 }
 
-.formulario-busqueda{
-    display:none;
-
-}
 
 .primera {
     background: url('/images/Terojo1.jpg'), -webkit-linear-gradient(rgba(12, 85, 40, 0.6), rgba(73, 73, 73, 0.4));
@@ -412,16 +411,26 @@
 
 
  .contenedor-carrito{
+    min-height: 100vh;
+    height: 100%;
+    overflow-y: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 30vw;
     display:flex;
     flex-direction:column;
     justify-content: center;
     align-items: flex-end;
     border:1 solid;
+    z-index: 9999!important;
 }
+
 
 
 .carritodecompras{
     width: 100%;
+    height: 100%;
     background-color:white;
     display:flex;
     flex-direction:column;
@@ -430,6 +439,7 @@
 }
 
 .titulocarrito{
+    position: relative;
     text-align:center;
     padding:25px;
     background: -webkit-linear-gradient(right, rgba(12, 85, 40, 1), rgba(73, 73, 73, 1));
@@ -437,38 +447,64 @@
     font-family: 'Raleway', sans-serif;
 }
 
+.contenedor-carrito .close-cart-btn{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+}
+
 .carrito-item{
     display:flex;
-    justify-content:flex-start;
-    margin:10px;
-    padding-top:30px;
+    justify-content:space-around;
+    align-items: center;
+    /* margin:10px; */
+    padding-top:10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
 
+.remove-from-cart-btn{
+    font-size: 20px;
+    padding: 0 10px;
+    border: none;
+    background: none;
+    text-decoration: none;
+    color: rgba(0,0,0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.remove-from-cart-btn:hover{
+    color: rgba(0,0,0, 0.5);
 }
 
 .carrito-item img{
     width:40%;
-    margin: 10px;
+    /* margin: 10px; */
 }
 
 .descripcion-carrito{
+    /* max-width: 30%; */
     display: flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    padding-left:200px;
-    width: 50%;
-    
 }
 
 .botones-carrito-input{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 50px;
 }
 
 .input-carrito-number{
-    width: 30%;
+    width: 100%;
+    text-align: center!important;
 }
 
 .carrito-subtotal{
@@ -482,11 +518,15 @@
 }
 
 .carrito-total{
-    margin-top:50px;
+    align-self: flex-end;
+    margin-top:auto;
     padding:30px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0,0,0,0.1);
     display:flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .carrito-boton{
@@ -564,6 +604,10 @@
     color: white;
     margin-bottom:40px;
     background-size: cover;
+}
+
+.login-container{
+    min-height: calc(100vh - 210px)
 }
 
 .contenedor-login{
@@ -762,9 +806,23 @@
     border-color: transparent;
 }
 
-@media (mind-width:680px){
+@media (max-width:679px){
     .input-carrito-number{
         width: 40px;
+    }
+
+    .contenedor-carrito{
+        width: 100vw;
+    }
+}
+
+@media (min-width:680px){
+    .input-carrito-number{
+        width: 40px;
+    }
+
+    .contenedor-carrito{
+        width: 100vw;
     }
 }
 
@@ -1004,8 +1062,8 @@
     
      .descripcion-producto .propiedades-producto .boton-producto .boton .carrito-btn2{
         color: white;
-        margin-left:10px;
-        padding-bottom:10px;
+        margin: 10px;
+        padding: 20px!important;
     }
 
     .carrito-item img{
@@ -1019,6 +1077,10 @@
     .gracias{
         padding:30px;
         height:77vh;
+    }
+
+    .contenedor-carrito{
+        width: 100vw;
     }
 
 
@@ -1040,9 +1102,13 @@
         font-size:25px;
     }
 
-    .carritodecompras{
-        width: 50%;
+    .contenedor-carrito{
+        width: 50vw;
     }
+
+    /* .carritodecompras{
+        width: 50%;
+    } */
 
 }
 
@@ -1067,7 +1133,11 @@
         margin-top:30px;
     }
 
-    .carritodecompras{
-        width: 40%;
+    .contenedor-carrito{
+        width: 35vw;
     }
+
+    /* .carritodecompras{
+        width: 100%;
+    } */
 }

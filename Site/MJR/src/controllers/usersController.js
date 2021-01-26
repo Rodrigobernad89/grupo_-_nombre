@@ -55,7 +55,7 @@ const controller = {
         await newUser.addRoles(6)
         // console.log(passwordHash);
         // res.json(req.body);		
-        res.redirect('/');
+        res.redirect('/users/login');
       }catch (error) {
         console.log(error);
       }

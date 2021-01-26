@@ -6,5 +6,13 @@ module.exports = (sequelize, DataTypes) => {
          price:DataTypes.DECIMAL,
          active:DataTypes.BOOLEAN,
      } )
+
+     extra.associate = models => {
+         extra.hasMany(models.Item, {
+            as: "items",
+            foreignKey: "extras_id",
+        });
+     }
+
      return extra;
  }

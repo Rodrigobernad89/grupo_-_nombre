@@ -12,7 +12,12 @@ module.exports = (sequelize, DataTypes) => {
         user.belongsToMany(models.Role,{
           through:'users_roles',
           as:'roles'
-        })
+        });
+        // associate with carts
+        user.hasMany(models.Cart, {
+          foreignKey: "user_id",
+          as: "carts",
+        });
+      }  
+      return user;
     }
-    return user;
-}

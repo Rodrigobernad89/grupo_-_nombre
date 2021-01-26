@@ -64,7 +64,7 @@ CREATE TABLE `proyecto_integrador_db`.`order_status` (
   `name` VARCHAR(100) NOT NULL,
   `description` TEXT NOT NULL,
   PRIMARY KEY (`id`));
-CREATE TABLE `proyecto_integrador_db`.`cart` (
+CREATE TABLE `proyecto_integrador_db`.`carts` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `creation` TIMESTAMP NULL,
   `modification` TIMESTAMP NULL,
@@ -155,13 +155,14 @@ CREATE TABLE `proyecto_integrador_db`.`items` (
   `cart_id` INT NOT NULL,
   `product_id` INT NOT NULL,
   `extras_id` INT NOT NULL,
+  `qty` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_items_cart_idx` (`cart_id` ASC) ,
   INDEX `fk_products_items_idx` (`product_id` ASC) ,
   INDEX `fk_items_extras_idx` (`extras_id` ASC) ,
   CONSTRAINT `fk_items_cart`
     FOREIGN KEY (`cart_id`)
-    REFERENCES `proyecto_integrador_db`.`cart` (`id`)
+    REFERENCES `proyecto_integrador_db`.`carts` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_items_products`
@@ -197,7 +198,7 @@ CREATE TABLE `proyecto_integrador_db`.`orders` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_cart`
     FOREIGN KEY (`cart_id`)
-    REFERENCES `proyecto_integrador_db`.`cart` (`id`)
+    REFERENCES `proyecto_integrador_db`.`carts` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_shipping`
@@ -232,7 +233,7 @@ ALTER TABLE `proyecto_integrador_db`.`users`
 CHANGE COLUMN `creation` `created_at` TIMESTAMP NULL DEFAULT NULL ,
 CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 
-ALTER TABLE `proyecto_integrador_db`.`cart` 
+ALTER TABLE `proyecto_integrador_db`.`carts` 
 CHANGE COLUMN `creation` `created_at` TIMESTAMP NULL DEFAULT NULL ,
 CHANGE COLUMN `modification` `updated_at` TIMESTAMP NULL DEFAULT NULL ;
 
@@ -310,22 +311,22 @@ insert into users (id, first_name, last_name, email, password) values (1, 'Maria
 insert into users (id, first_name, last_name, email, password) values (2, 'Juan', 'Pablo', 'juanPablo@mjr.com', '456');
 insert into users (id, first_name, last_name, email, password) values (3, 'Rodrigo', 'Bernad', 'rodrigoBernad@mjr.com', '789');
 insert into users (id, first_name, last_name, email, password) values (4, 'saida', 'Subelza', 'dthurner3@paginegialle.it', '******');
-insert into users (id, first_name, last_name, email, password) values (5, 'Sid', 'Woolis', 'swoolis4@nasa.gov', 'uu3WGJ');
-insert into users (id, first_name, last_name, email, password) values (6, 'Jena', 'Layfield', 'jlayfield5@phpbb.com', 'FqkVuUdlrXI');
-insert into users (id, first_name, last_name, email, password) values (7, 'Stafford', 'O''Dare', 'sodare6@usnews.com', '85qWjj');
-insert into users (id, first_name, last_name, email, password) values (8, 'Justis', 'Culver', 'jculver7@meetup.com', 'tlLWm9VK');
-insert into users (id, first_name, last_name, email, password) values (9, 'Ward', 'Smalls', 'wsmalls8@dell.com', 'vHbfpF6bAOw');
-insert into users (id, first_name, last_name, email, password) values (10, 'Dulcinea', 'Loveridge', 'dloveridge9@slashdot.org', 'HlaGrkDiroUp');
-insert into users (id, first_name, last_name, email, password) values (11, 'Briano', 'Howcroft', 'bhowcrofta@usda.gov', 'B15Q8KI6xJ');
-insert into users (id, first_name, last_name, email, password) values (12, 'Wilburt', 'Cloy', 'wcloyb@foxnews.com', 'peD972');
-insert into users (id, first_name, last_name, email, password) values (13, 'Manny', 'Raspison', 'mraspisonc@nbcnews.com', 'X8z0Ay');
-insert into users (id, first_name, last_name, email, password) values (14, 'Padget', 'Ausiello', 'pausiellod@ucoz.ru', '0dK4E2Qyu3Ht');
-insert into users (id, first_name, last_name, email, password) values (15, 'Jeni', 'Whicher', 'jwhichere@technorati.com', 'qGBjCsrV');
-insert into users (id, first_name, last_name, email, password) values (16, 'Carly', 'Blade', 'cbladef@flickr.com', 'YQ8yBy5X');
-insert into users (id, first_name, last_name, email, password) values (17, 'Lannie', 'Spoors', 'lspoorsg@photobucket.com', 'uJomrYzO2QYE');
-insert into users (id, first_name, last_name, email, password) values (18, 'Melisent', 'Sloy', 'msloyh@slashdot.org', 'SNTt2ZmViD9');
-insert into users (id, first_name, last_name, email, password) values (19, 'Rose', 'Lefever', 'rlefeveri@state.gov', 'DEw8nLaiWj');
-insert into users (id, first_name, last_name, email, password) values (20, 'Clarke', 'Eddisford', 'ceddisfordj@msu.edu', '2er9S7YRfoV');
+-- insert into users (id, first_name, last_name, email, password) values (5, 'Sid', 'Woolis', 'swoolis4@nasa.gov', 'uu3WGJ');
+-- insert into users (id, first_name, last_name, email, password) values (6, 'Jena', 'Layfield', 'jlayfield5@phpbb.com', 'FqkVuUdlrXI');
+-- insert into users (id, first_name, last_name, email, password) values (7, 'Stafford', 'O''Dare', 'sodare6@usnews.com', '85qWjj');
+-- insert into users (id, first_name, last_name, email, password) values (8, 'Justis', 'Culver', 'jculver7@meetup.com', 'tlLWm9VK');
+-- insert into users (id, first_name, last_name, email, password) values (9, 'Ward', 'Smalls', 'wsmalls8@dell.com', 'vHbfpF6bAOw');
+-- insert into users (id, first_name, last_name, email, password) values (10, 'Dulcinea', 'Loveridge', 'dloveridge9@slashdot.org', 'HlaGrkDiroUp');
+-- insert into users (id, first_name, last_name, email, password) values (11, 'Briano', 'Howcroft', 'bhowcrofta@usda.gov', 'B15Q8KI6xJ');
+-- insert into users (id, first_name, last_name, email, password) values (12, 'Wilburt', 'Cloy', 'wcloyb@foxnews.com', 'peD972');
+-- insert into users (id, first_name, last_name, email, password) values (13, 'Manny', 'Raspison', 'mraspisonc@nbcnews.com', 'X8z0Ay');
+-- insert into users (id, first_name, last_name, email, password) values (14, 'Padget', 'Ausiello', 'pausiellod@ucoz.ru', '0dK4E2Qyu3Ht');
+-- insert into users (id, first_name, last_name, email, password) values (15, 'Jeni', 'Whicher', 'jwhichere@technorati.com', 'qGBjCsrV');
+-- insert into users (id, first_name, last_name, email, password) values (16, 'Carly', 'Blade', 'cbladef@flickr.com', 'YQ8yBy5X');
+-- insert into users (id, first_name, last_name, email, password) values (17, 'Lannie', 'Spoors', 'lspoorsg@photobucket.com', 'uJomrYzO2QYE');
+-- insert into users (id, first_name, last_name, email, password) values (18, 'Melisent', 'Sloy', 'msloyh@slashdot.org', 'SNTt2ZmViD9');
+-- insert into users (id, first_name, last_name, email, password) values (19, 'Rose', 'Lefever', 'rlefeveri@state.gov', 'DEw8nLaiWj');
+-- insert into users (id, first_name, last_name, email, password) values (20, 'Clarke', 'Eddisford', 'ceddisfordj@msu.edu', '2er9S7YRfoV');
 
 /*poblacion de la tabla users_roles*/
 insert into users_roles (id, user_id, role_id) values (1,1,1);
@@ -333,8 +334,13 @@ insert into users_roles (id, user_id, role_id) values (2,2,2);
 insert into users_roles (id, user_id, role_id) values (3,3,1);
 insert into users_roles (id, user_id, role_id) values (4,4,2);
 
-ALTER TABLE `proyecto_integrador_db`.`cart` 
-ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `user_id`;
+ALTER TABLE `proyecto_integrador_db`.`carts` 
+ADD COLUMN `purchased_at` TIMESTAMP NULL DEFAULT NULL AFTER `user_id`;
+ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `purchased_at`;
+
+ALTER TABLE `proyecto_integrador_db`.`carts` 
+ADD COLUMN `total` TIMESTAMP NULL DEFAULT NULL AFTER `user_id`;
+
 
 ALTER TABLE `proyecto_integrador_db`.`extras` 
 ADD COLUMN `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `active`;

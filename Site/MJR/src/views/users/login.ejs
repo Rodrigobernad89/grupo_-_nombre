@@ -7,45 +7,47 @@
 
 <%- include('../partials/header')  %> 
 
-<div class="row">
-    <div class="col-ms-4 centrado">
-        <div class="toast fade d-flex align-items-center bg-danger text-white border-1  align-middle" role="alert">
-            <div class="toast-body ">
-             <p class="text-center" id="mensaje">Usuario no encontrado</p>
-            </div>
-          </div>
-        <section >
-            <form action="/users/login" method="POST" class="formulario-login" id="login_usuario">
-                <h2 class="titulo-login">Ingresa tus Datos</h2>
-               
-                <div class="campo-login">
-                    <label for="email" class="form-label">email</label>
-                    <input type="text" class="form-control" id="email" name="email" require placeholder="mjr@mjr.com"><br>
+<section class="login-container">
+    <div class="row">
+        <div class="col-ms-4 centrado">
+            <div class="toast fade d-flex align-items-center bg-danger text-white border-1  align-middle" role="alert">
+                <div class="toast-body ">
+                 <p class="text-center" id="mensaje">Usuario no encontrado</p>
                 </div>
-                <div class="campo-login">
-                    <label for="password" class="form-label">contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password"><br>
-                </div>
-                <div class="me-olvide">
-                    <a href="/users/restaurar">Olvidé mi contraseña</a>
-                </div>
-                <div class="campo-login">
-                    <label for="rememberme">Recordarme
-                    <input type="checkbox" class="input-login-3" id="rememberme" name="rememberme">
-                </label>
-                </div>
-              
-                <input class = "btn btn-outline-primary" type="submit" value="iniciar session">
-                <input type="button" value="crea cuenta" class="btn btn-outline-secondary">
-        
-            </form>
-        </section>
+              </div>
+            <section >
+                <form action="/users/login" method="POST" class="formulario-login" id="login_usuario">
+                    <h2 class="titulo-login">Ingresa tus Datos</h2>
+                   
+                    <div class="campo-login">
+                        <label for="email" class="form-label">email</label>
+                        <input type="text" class="form-control" id="email" name="email" require placeholder="mjr@mjr.com"><br>
+                    </div>
+                    <div class="campo-login">
+                        <label for="password" class="form-label">contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password"><br>
+                    </div>
+                    <div class="me-olvide">
+                        <a href="/users/restaurar">Olvidé mi contraseña</a>
+                    </div>
+                    <div class="campo-login">
+                        <label for="rememberme">Recordarme
+                        <input type="checkbox" class="input-login-3" id="rememberme" name="rememberme">
+                    </label>
+                    </div>
+                  
+                    <input class = "btn btn-outline-primary" type="submit" value="iniciar session">
+                    <a href="/users/register" class="btn btn-outline-secondary">crea cuenta</a>
+            
+                </form>
+            </section>
+        </div>
+       
     </div>
-   
-  </div>
+</section>
 
 
-
+<%- include('../partials/footer')  %> 
 
 <%- include('../partials/bootstrap')  %> 
 

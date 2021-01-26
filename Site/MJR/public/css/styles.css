@@ -606,6 +606,10 @@
     background-size: cover;
 }
 
+.login-container{
+    min-height: calc(100vh - 210px)
+}
+
 .contenedor-login{
     display: flex;
     flex-direction: column;

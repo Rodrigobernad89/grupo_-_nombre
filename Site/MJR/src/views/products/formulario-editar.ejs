@@ -13,19 +13,19 @@
         <p class="segundo-titulo-edicion">Estas editando: <%= toEdit.name %></p>
         <div class="campo-edicion">
             <label for="name">Nombre del producto</label><br>
-            <input type="text" class="input-edicion" id="nombre_producto" name="name" value=<%= toEdit.name %> ><br>
+            <input type="text" class="input-edicion" id="nombre_producto" name="name" value="<%= toEdit.name %>" ><br>
         </div>
         <div class="campo-edicion">
             <label for="description">Descripcion del producto</label><br>
-            <textarea name="description" id="descripcion" class="input-edicion" value = <%= toEdit.description %>></textarea><br>
+            <textarea name="description" id="descripcion" class="textarea-edicion" rows="3"><%= toEdit.description %></textarea><br>
         </div>
         <div class="campo-edicion">
             <label for="instructions">Indicaciones</label><br>
-            <input type="text" class="input-edicion" id="indicaciones" name="instructions" value = <%= toEdit.instructions %>><br>
+            <input type="text" class="input-edicion" id="indicaciones" name="instructions" value="<%= toEdit.instructions %>"><br>
         </div>
         <div class="campo-edicion">
             <label for="price">Precio del producto</label><br>
-            <input type="text" class="input-edicion" id="precio" name="price" value = <%= toEdit.price %>><br>
+            <input type="text" class="input-edicion" id="precio" name="price" value ="$<%=  toEdit.price %>"><br>
         </div>
         <div>
             <label for="image">Subi tu imagen</label>

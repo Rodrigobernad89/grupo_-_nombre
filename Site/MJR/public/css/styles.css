@@ -178,14 +178,15 @@
 .descripcion-producto{
     background-color:white;
     padding-top:30px;
-}
-
-.descripcion-producto .imagen-producto{
     width:100%;
 }
 
+.descripcion-producto .imagen-producto{
+    width:30%;
+}
+
 .descripcion-producto .imagen-producto img{
-    width:70%;
+    width:100%;
 }
 
 .descripcion-producto .propiedades-producto .titulo-producto h2{
@@ -290,11 +291,11 @@
 }
 
 
-.input-edicion{
+.input-edicion,
+.textarea-edicion {
    background-color: rgb(173, 173, 173);
    color: black;
    width: 450px;
-   height: 35px;
    margin-bottom: 30px;
    border-radius: 10px;
    /*border: 0.5px solid black;*/
@@ -302,6 +303,9 @@
    text-align:center;
 }
 
+.input-edicion{
+    height: 35px;
+}
 .campo-edicion{
    font-size: medium;
    

@@ -17,8 +17,10 @@ const controller = {
                   users.push({id:a.id,name:a.first_name+' '+a.last_name,email:a.email,detail:'/api/users/'+a.id})
                 })
                 let result ={
+                  metadata:{
                     count:users.length,
-                    users
+                  },
+                  data: {users}
                 }
                 res.json(result)
               }

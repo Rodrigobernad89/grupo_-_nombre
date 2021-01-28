@@ -26,7 +26,6 @@ $( document ).ready(function() {
                 $('.toast').toast('show');
                 console.log('error')
             }else{
-                
                 location.href='/products';
             }
            

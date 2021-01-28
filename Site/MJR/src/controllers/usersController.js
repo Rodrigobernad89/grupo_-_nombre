@@ -33,8 +33,8 @@ const controller = {
             if(req.body.rememberme){
               res.cookie("recordame", userFound.email, {maxAge: 1000 * 60})
             }
-              // res.send(userFound);
-              res.redirect('/');
+            res.send(userFound);
+             // res.redirect('/');
 
           }else{
             res.send({mensaje:'error'});

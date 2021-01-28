@@ -12,6 +12,8 @@ const controller = {
     index: async(req,res) =>{
         try{
             const products = await Product.findAll();
+
+    
             
             if(products.length > 0){
                 let results ={

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head')  %> 
+
+<body>
+
+    <%- include('../partials/header')  %> 
+    <div class="page-title">
+        <h2>¡Muchas Gracias Por Tu Compra!</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="purchase-total">
+                    <h1>Nro. de Orden: <%= cart.id %></h1>
+                    <h2><span>Total: </span> $<%=cart.total%></h2>
+                </div>
+                <div class="purchase-details">
+                    <% cart.items.forEach( item => { %>
+                        <div class="item-container">
+                            <div class="qty-container">
+                                <span>Cant: </span><h3><%= item.qty %></h3>
+                            </div>
+                            <div class="image-container">
+                                <img src="/images/<%= item.product.image %>" alt="<%= item.product.name %>">
+                            </div>
+                            <div class="name-container">
+                                <span>Producto: </span><h3><%= item.product.name %></h3>
+                            </div>
+                            <div class="extra-container">
+                                <%if(item.extra){ %>
+                                    <span>Extra: </span><h3><%= item.extra.name %></h3>
+                                <% } %>
+                            </div>
+                        </div>
+                    <%})%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</body>
+
+<%- include('../partials/footer')  %>
+
+<%- include('../partials/bootstrap')  %> 
+</html>

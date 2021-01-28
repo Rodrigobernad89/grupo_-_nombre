@@ -15,6 +15,7 @@ var productsRouter = require('./routes/products');
 var rolesRouter = require('./routes/roles');
 var profilesRouter = require('./routes/profiles');
 var cartRouter = require('./routes/cart');
+var purchaseRouter = require('./routes/purchase');
 var app = express();
 
 var apiRouter = require('./routes/api/productsApi');
@@ -51,6 +52,7 @@ app.use('/users', usersRouter);
 app.use('/roles', rolesRouter);
 app.use('/profiles', profilesRouter);
 app.use('/cart', cartRouter);
+app.use('/purchase', purchaseRouter);
 
 
 app.use('/api/products', apiRouter);
